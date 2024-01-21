@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/StockDetailPage",
+    "pages/UIUpdateDemo",
+    "pages/StatusManagerDemo",
+    "pages/WebPage",
+    "pages/HttpPage",
+    "pages/CanvasPage",
+    "pages/SearchStockPage",
+    "pages/SelfStockPage"
+  ]
+}

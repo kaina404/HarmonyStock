@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "default_txt_color",
+      "value": "#666666"
+    },
+    {
+      "name": "split_line_color",
+      "value": "#666666"
+    }
+  ]
+}
