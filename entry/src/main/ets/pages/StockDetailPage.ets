@@ -12,7 +12,7 @@ import { DayKLineComponent } from './component/DayKLineComponent';
 import { redColor, redColorRGB } from '../common/Constants';
 import { RequestStockBasicInfoApi } from '../network/RequestStockBasicInfoApi';
 import { StockBasicInfoBean } from '../bean/StockBasicInfoBean';
-import { WuDangComponent } from './component/WuDangComponent';
+import { WuDangBuySellComponent } from './component/WuDangBuySellComponent';
 import { openPage, Path_SearchStockPage } from '../router/RouterManager';
 
 @Entry
@@ -145,7 +145,7 @@ struct StockDetailPage {
             if (this.stockBasicInfoBean != undefined
               && this.stockBasicInfoBean.snap != undefined
               && this.stockBasicInfoBean.snap.wuDangData != undefined) {
-              WuDangComponent({ wuDangData: this.stockBasicInfoBean.snap.wuDangData })
+              WuDangBuySellComponent({ wuDangData: this.stockBasicInfoBean.snap.wuDangData })
                 .width('30%')
                 .height('100%')
             }

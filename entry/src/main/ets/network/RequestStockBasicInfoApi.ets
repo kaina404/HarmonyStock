@@ -78,7 +78,7 @@ export class RequestStockBasicInfoApi {
     const wuDangPrices: WuDangPrice[] = [];
     for (let i = 0; i < data.length; i += 2) {
       const price = data[i];
-      const amount = data[i + 1];
+      const amount = data[i + 1] / 100.0;//除以100是将100股转为对应的1手
       wuDangPrices.push({ price, amount });
     }
     return wuDangPrices;

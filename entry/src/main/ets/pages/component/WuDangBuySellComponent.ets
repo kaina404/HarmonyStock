@@ -6,7 +6,7 @@ import { DrawRect } from '../DrawRect'
  * 买卖五档的基础组件
  */
 @Component
-export struct WuDangComponent {
+export struct WuDangBuySellComponent {
   @Prop wuDangData: WuDangData
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
