@@ -11,6 +11,7 @@ import { openPage, Path_SearchStockPage, Path_StockDetailPage } from '../router/
 /**
  * 自选股列表页面
  * 添加到自选股数据库中的页面均在这里显示
+ * 支持：置顶股票、置底股票、删除股票。
  */
 @Entry
 @Component
