@@ -7,6 +7,7 @@
     "pages/HttpPage",
     "pages/CanvasPage",
     "pages/SearchStockPage",
-    "pages/SelfStockPage"
+    "pages/SelfStockPage",
+    "pages/ContentPage"
   ]
 }
