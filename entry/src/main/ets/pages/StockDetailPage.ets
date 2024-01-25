@@ -113,7 +113,7 @@ struct StockDetailPage {
           center: { anchor: '__container__', align: VerticalAlign.Center },
           middle: { anchor: '__container__', align: HorizontalAlign.Center },
         })
-        .id('title')
+        .id('title1')
 
         Image($r('app.media.search'))
           .width(20)
@@ -126,7 +126,7 @@ struct StockDetailPage {
           .onClick(() => {
             this._goToSearchStockPage()
           })
-          .id('search')
+          .id('search1')
       }
       .height(60)
       .width('100%')

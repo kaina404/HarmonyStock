@@ -95,26 +95,27 @@ struct SelfStockPage {
           .textAlign(TextAlign.Center)
           .fontSize(22)
           .fontWeight(600)
+          .margin({ bottom: '40vp' })
           .alignRules({
-            center: { anchor: '__container__', align: VerticalAlign.Center },
+            center: { anchor: '__container__', align: VerticalAlign.Bottom },
             middle: { anchor: '__container__', align: HorizontalAlign.Center },
           })
-          .id('title')
+          .id('title2')
 
         Image($r('app.media.search'))
           .width(20)
           .height(20)
-          .margin(20)
+          .margin({ bottom: '40vp' })
           .alignRules({
-            center: { anchor: '__container__', align: VerticalAlign.Center },
+            center: { anchor: '__container__', align: VerticalAlign.Bottom },
             right: { anchor: '__container__', align: HorizontalAlign.End }
           })
           .onClick(() => {
             openPage({ url: Path_SearchStockPage })
           })
-          .id('search')
+          .id('search2')
       }
-      .height(60)
+      .height(75)
       .width('100%')
       .backgroundColor(redColorRGB)
       .flexBasis('auto')
