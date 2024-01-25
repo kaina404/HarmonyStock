@@ -17,6 +17,7 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     try {
+      //暂时不用全面屏，先隐藏掉。
       // windowStage.getMainWindowSync().setWindowLayoutFullScreen(true,(err)=>{
       //   if (err.code) {
       //     console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
@@ -34,7 +35,7 @@ export default class EntryAbility extends UIAbility {
     } catch (exception) {
       console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
     }
-    windowStage.loadContent('pages/SelfStockPage', (err, data) => {
+    windowStage.loadContent('pages/ContentPage', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
