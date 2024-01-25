@@ -8,6 +8,11 @@
     "pages/CanvasPage",
     "pages/SearchStockPage",
     "pages/SelfStockPage",
-    "pages/ContentPage"
+    "pages/ContentPage",
+    "pages/home/HomePage",
+    "pages/quotes/QuotesPage",
+    "pages/financial/FinancialPage",
+    "pages/news/NewsPage",
+    "pages/trade/TradePage"
   ]
 }

@@ -15,7 +15,7 @@ import { openPage, Path_SearchStockPage, Path_StockDetailPage } from '../router/
  */
 @Entry
 @Component
-struct SelfStockPage {
+export struct SelfStockPage {
   /**
    * 自选股数据库
    */
