@@ -1,93 +1,100 @@
-https://github.com/kaina404/HarmonyStock
+# [HarmonyStock仓库](https://github.com/kaina404/HarmonyStock)
+
+# 股票接口
+
+## 上交所与深交所接口
 
 
 http://yunhq.sse.com.cn:32041/v1/sh1/line/600000?select=time,price,volume,avg_price,amount,highest,lowest&_=1703157469001
 
-//新浪 日K
-http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sh000977&scale=240&ma=5&datalen=5'
+* 新浪 日K
+  http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sh000977&scale=240&ma=5&datalen=5'
 
+* 查询上交所所有股票的基础信息
+  http://yunhq.sse.com.cn:32041/v1/sh1/list/exchange/equity?select=code,name,open,high,low,last,prev_close,chg_rate,volume,amount,tradephase,change,amp_rate,cpxxsubtype,cpxxprodusta,tradephase
+  http://yunhq.sse.com.cn:32041/v1/sh1/list/exchange/equity?select=code,name,open,high,low,volume,last
+* -------------查询指定股票的基础信息-------
+  * 上交所
+    http://yunhq.sse.com.cn:32041/v1/sh1/snap/600089
+  * 深交所
+    http://yunhq.sse.com.cn:32041/v1/sz1/snap/000002
 
-//查询上交所所有股票的基础信息
-//http://yunhq.sse.com.cn:32041/v1/sh1/list/exchange/equity?select=code,name,open,high,low,last,prev_close,chg_rate,volume,amount,tradephase,change,amp_rate,cpxxsubtype,cpxxprodusta,tradephase
-http://yunhq.sse.com.cn:32041/v1/sh1/list/exchange/equity?select=code,name,open,high,low,volume,last
-//-------------查询指定股票的基础信息-------
-//上交所
-http://yunhq.sse.com.cn:32041/v1/sh1/snap/600089
-//深交所
-http://yunhq.sse.com.cn:32041/v1/sz1/snap/000002
+* 根据代码查询对应股票名称
+  * http://yunhq.sse.com.cn:32041/v1/sh1/snap/600089?select=name
 
-http://yunhq.sse.com.cn:32041/v1/sh1/snap/600089?select=name
+## 腾讯股票接口：
 
-# 腾讯股票接口：
-分时图
-http://data.gtimg.cn/flashdata/hushen/minute/sz000001.js?maxage=110&0.28163905744440854
+* 分时图
+  http://data.gtimg.cn/flashdata/hushen/minute/sz000001.js?maxage=110&0.28163905744440854
 
-五天分时图
-http://data.gtimg.cn/flashdata/hushen/4day/sz/sz000002.js?maxage=43200&visitDstTime=1
+* 五天分时图
+  http://data.gtimg.cn/flashdata/hushen/4day/sz/sz000002.js?maxage=43200&visitDstTime=1
 
-日k
-http://data.gtimg.cn/flashdata/hushen/latest/daily/sz000002.js?maxage=43201&visitDstTime=1
+* 日k
+  http://data.gtimg.cn/flashdata/hushen/latest/daily/sz000002.js?maxage=43201&visitDstTime=1
 
-指定年份的日K先
-http://data.gtimg.cn/flashdata/hushen/daily/17/sz000750.js?visitDstTime=1
+* 指定年份的日K先
+  http://data.gtimg.cn/flashdata/hushen/daily/17/sz000750.js?visitDstTime=1
 
-周K
-http://data.gtimg.cn/flashdata/hushen/latest/weekly/sz000002.js?maxage=43201&visitDstTime=1
+* 周K
+  http://data.gtimg.cn/flashdata/hushen/latest/weekly/sz000002.js?maxage=43201&visitDstTime=1
 
-月k
-http://data.gtimg.cn/flashdata/hushen/monthly/sz000002.js?maxage=43201
+* 月k
+  http://data.gtimg.cn/flashdata/hushen/monthly/sz000002.js?maxage=43201
 
-实时成交量明细
-http://stock.gtimg.cn/data/index.php?appn=detail&action=data&c=sz002451&p=2
-p为分页
+* 实时成交量明细
+  http://stock.gtimg.cn/data/index.php?appn=detail&action=data&c=sz002451&p=2
+  p为分页
 
-大单数据
-http://stock.finance.qq.com/sstock/list/view/dadan.php?t=js&c=sz002451&max=80&p=1&opt=10&o=0
-opt=10 11 12 13 分别对应成交额大于等于（100万 200万 500万 1000万）
-opt=1,2,3,4,5,6,7,8 分别对应成交量大于等于（100手 200手 300手 400手 500手 800手 1000手 1500手 2000手）
+* 大单数据
+  http://stock.finance.qq.com/sstock/list/view/dadan.php?t=js&c=sz002451&max=80&p=1&opt=10&o=0
+  opt=10 11 12 13 分别对应成交额大于等于（100万 200万 500万 1000万）
+  opt=1,2,3,4,5,6,7,8 分别对应成交量大于等于（100手 200手 300手 400手 500手 800手 1000手 1500手 2000手）
 
-5分钟
-http://ifzq.gtimg.cn/appstock/app/kline/mkline?param=sh600020,m5,,800&_var=m5_today
-30分钟
-http://ifzq.gtimg.cn/appstock/app/kline/mkline?param=sh600020,m30,,800&_var=m30_today
-60分钟
-http://ifzq.gtimg.cn/appstock/app/kline/mkline?param=sh600020,m60,,800&_var=m60_today
-五日 只有收盘价和成交量
-https://web.ifzq.gtimg.cn/appstock/app/day/query?code=sh600089
-日数据 640为一年，如三年要640*3
-http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?_var=&param=sh600010,day,2013-01-01,2014-12-31,640,qfq
-http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?_var=kline_dayqfq2013&param=sh600020,day,2013-01-01,2014-12-31,640,qfq
-周数据 128为一年，如三年要128*3
-http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?_var=kline_weekqfq2013&param=sh600020,week,2013-01-01,2014-12-31,320,qfq
-月数据 12为一年，如三年要12*3
-http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?_var=kline_monthqfq2013&param=sh600020,month,2013-01-01,2014-12-31,12,qfq
+* 5分钟
+  http://ifzq.gtimg.cn/appstock/app/kline/mkline?param=sh600020,m5,,800&_var=m5_today
+* 30分钟
+  http://ifzq.gtimg.cn/appstock/app/kline/mkline?param=sh600020,m30,,800&_var=m30_today
+* 60分钟
+  http://ifzq.gtimg.cn/appstock/app/kline/mkline?param=sh600020,m60,,800&_var=m60_today
+* 五日 只有收盘价和成交量
+  https://web.ifzq.gtimg.cn/appstock/app/day/query?code=sh600089
+* 日数据 640为一年，如三年要640*3
+  http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?_var=&param=sh600010,day,2013-01-01,2014-12-31,640,qfq
+  http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?_var=kline_dayqfq2013&param=sh600020,day,2013-01-01,2014-12-31,640,qfq*
+* *周数据 128为一年，如三年要128*3
+  http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?_var=kline_weekqfq2013&param=sh600020,week,2013-01-01,2014-12-31,320,qfq
+* 月数据 12为一年，如三年要12*3
+  http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?_var=kline_monthqfq2013&param=sh600020,month,2013-01-01,2014-12-31,12,qfq
 
-和讯网股票接口：
-日k（所有数据）
-http://flashquote.stock.hexun.com/Quotejs/DA/1_601398_DA.html
+## 和讯网股票接口：
 
-指定时间区域的日k
-http://webstock.quote.hermes.hexun.com/a/kline?code=sse601398&start=20170909150000&number=-1000&type=5&callback=callback
+* 日k（所有数据）
+  http://flashquote.stock.hexun.com/Quotejs/DA/1_601398_DA.html
 
-分时线
-http://flashquote.stock.hexun.com/Quotejs/MA/1_000001_MA.html?
+* 指定时间区域的日k
+  http://webstock.quote.hermes.hexun.com/a/kline?code=sse601398&start=20170909150000&number=-1000&type=5&callback=callback
 
-指定时间区域的分时线
-http://webstock.quote.hermes.hexun.com/a/minute?code=sse600000&start=20170424000000&number=6000&callback=callback
+* 分时线
+  http://flashquote.stock.hexun.com/Quotejs/MA/1_000001_MA.html?
 
-明细接口
-http://flashquote.stock.hexun.com/Stock_DL.ASPX?m=1&c=000001&t=0.6584310308098793
+* 指定时间区域的分时线
+  http://webstock.quote.hermes.hexun.com/a/minute?code=sse600000&start=20170424000000&number=6000&callback=callback
 
-新浪股票接口：
-最近二十天左右的每5分钟数据
-http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz000001&scale=5&ma=5&datalen=1023
-（参数：股票编号、分钟间隔（5、15、30、60）、均值（5、10、15、20、25）、查询个数点（最大值242））
+* 明细接口
+  http://flashquote.stock.hexun.com/Stock_DL.ASPX?m=1&c=000001&t=0.6584310308098793
 
-新浪关键词查询股票接口
-http://suggest3.sinajs.cn/suggest/type=&key=60&name=suggestdata_1429775785401
+### 新浪股票接口：
 
-查询股票最新行情
-http://hq.sinajs.cn/list=sh601003,sh601001
+* 最近二十天左右的每5分钟数据
+  http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz000001&scale=5&ma=5&datalen=1023
+  （参数：股票编号、分钟间隔（5、15、30、60）、均值（5、10、15、20、25）、查询个数点（最大值242））
+
+* 新浪关键词查询股票接口
+  http://suggest3.sinajs.cn/suggest/type=&key=60&name=suggestdata_1429775785401
+
+* 查询股票最新行情
+  http://hq.sinajs.cn/list=sh601003,sh601001
 
 返回结果如下：
 
@@ -144,6 +151,10 @@ http://image.sinajs.cn/newchart/weekly/n/sh000001.gif
 月K线查询：
 http://image.sinajs.cn/newchart/monthly/n/sh000001.gif
 
+## 网易股票接口
+
+> 个人感觉复杂
+
 网易的数据问题是只能提供不复权的数据，所以我们从网易提取流通市值和总市值，其他的从雪球提取，由于交易时段网易没有相关的接口来抓取流通市值和总市值，所以从腾讯接口提取实时的数据。
 
 网易的接口是：
@@ -159,6 +170,10 @@ http://quotes.money.163.com/service/chddata.html?code=代码&start=开始时间&
 http://quotes.money.163.com/service/chddata.html?code=0000300&start=20151219&end=20171108&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;VOTURNOVER
 
 上海股票数据查询（浪潮）：http://quotes.money.163.com/service/chddata.html?code=0600756&start=20160902&end=20171108&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;VOTURNOVER;
+
+## 雪球接口
+
+> 个人感觉复杂
 
 雪球的接口是：
 雪球网的数据格式是json字符串
