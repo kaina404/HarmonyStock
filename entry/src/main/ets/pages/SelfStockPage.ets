@@ -95,9 +95,8 @@ struct SelfStockPage {
           .textAlign(TextAlign.Center)
           .fontSize(22)
           .fontWeight(600)
-          .margin({ bottom: '40vp' })
           .alignRules({
-            center: { anchor: '__container__', align: VerticalAlign.Bottom },
+            center: { anchor: '__container__', align: VerticalAlign.Center },
             middle: { anchor: '__container__', align: HorizontalAlign.Center },
           })
           .id('title2')
@@ -105,9 +104,9 @@ struct SelfStockPage {
         Image($r('app.media.search'))
           .width(20)
           .height(20)
-          .margin({ bottom: '40vp' })
+          .margin(20)
           .alignRules({
-            center: { anchor: '__container__', align: VerticalAlign.Bottom },
+            center: { anchor: '__container__', align: VerticalAlign.Center },
             right: { anchor: '__container__', align: HorizontalAlign.End }
           })
           .onClick(() => {
@@ -115,7 +114,7 @@ struct SelfStockPage {
           })
           .id('search2')
       }
-      .height(75)
+      .height(60)
       .width('100%')
       .backgroundColor(redColorRGB)
       .flexBasis('auto')

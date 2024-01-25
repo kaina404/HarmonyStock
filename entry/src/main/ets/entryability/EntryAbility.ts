@@ -17,13 +17,13 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     try {
-      windowStage.getMainWindowSync().setWindowLayoutFullScreen(true,(err)=>{
-        if (err.code) {
-          console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in enabling the full-screen mode.');
-      })
+      // windowStage.getMainWindowSync().setWindowLayoutFullScreen(true,(err)=>{
+      //   if (err.code) {
+      //     console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+      //     return;
+      //   }
+      //   console.info('Succeeded in enabling the full-screen mode.');
+      // })
       /*windowStage.getMainWindowSync().setWindowSystemBarEnable([], (err) => {
         if (err.code) {
           console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
