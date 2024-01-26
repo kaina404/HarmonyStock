@@ -1,3 +1,4 @@
+import common from '@ohos.app.ability.common';
 import { SelfStockDataBean } from '../bean/SelfStockDataBean';
 import { StockBasicInfoBean } from '../bean/StockBasicInfoBean';
 import StockDBData from '../bean/StockDBData';
@@ -7,15 +8,16 @@ import SelfStockTable from '../db/tables/SelfStockTable';
 import { SelfStockDataSource } from '../idatasource/SelfStockDataSource';
 import { RequestStockBasicInfoApi } from '../network/RequestStockBasicInfoApi';
 import { openPage, Path_SearchStockPage, Path_StockDetailPage } from '../router/RouterManager';
+import { Event_Refresh_SelfStockList } from '../viewmodel/EventHubConstant';
 
 /**
  * 自选股列表页面
  * 添加到自选股数据库中的页面均在这里显示
  * 支持：置顶股票、置底股票、删除股票。
  */
-@Entry
 @Component
 export struct SelfStockPage {
+  private context = getContext(this) as common.UIAbilityContext;
   /**
    * 自选股数据库
    */
@@ -50,7 +52,20 @@ export struct SelfStockPage {
     }.width(230).height(40).padding(5).justifyContent(FlexAlign.SpaceAround)
   }
 
-  onPageShow() {
+  aboutToAppear() {
+    //注册监听刷新自选列表事件
+    let eventhub = this.context.eventHub
+    eventhub.on(Event_Refresh_SelfStockList, (...data) => {
+      this.refresh()
+    })
+    this.refresh()
+  }
+
+  aboutToDisappear() {
+    this.context.eventHub.off(Event_Refresh_SelfStockList)
+  }
+
+  refresh() {
     //初始化数据库
     this.selfStockTable.getRdbStore(() => {
       this.selfStockTable.query('', (result: StockDBData[]) => {

@@ -1,0 +1,1 @@
+export const Event_Refresh_SelfStockList = 'event_refresh_self_list'

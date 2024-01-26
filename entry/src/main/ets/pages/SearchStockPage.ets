@@ -1,3 +1,4 @@
+import common from '@ohos.app.ability.common'
 import StockDBData from '../bean/StockDBData'
 import { Rdb } from '../db/AppRdb'
 import SelfStockTable from '../db/tables/SelfStockTable'
@@ -5,6 +6,7 @@ import SelfStockTable from '../db/tables/SelfStockTable'
 import { SearchStockDataSource } from '../idatasource/SearchStockDataSource'
 import { SearchStockApi, SearchStockBean, SearchStockResponse } from '../network/SearchStockApi'
 import { closePage, openPage, Path_StockDetailPage } from '../router/RouterManager'
+import { Event_Refresh_SelfStockList } from '../viewmodel/EventHubConstant'
 
 /**
  * 搜索股票页面
@@ -17,6 +19,7 @@ struct SearchStockPage {
   private controller: SearchController = new SearchController()
   private searchStockApi = new SearchStockApi()
   private dataSource = new SearchStockDataSource()
+  private needRefreshSelfList = false //用来标记是否需要刷新自选股页面的列表
   /**
    * 自选股数据库
    */
@@ -117,6 +120,7 @@ struct SearchStockPage {
    * @param bean
    */
   _removeSelfStock(bean: SearchStockBean) {
+    this.needRefreshSelfList = true
     this.selfStockTable.deleteDataByCode(bean.code, (result) => {
       console.log("删除自选股结果:" + result)
       if (result > 0) {
@@ -138,6 +142,7 @@ struct SearchStockPage {
    * @param bean
    */
   _addItem2SelfStock(bean: SearchStockBean) {
+    this.needRefreshSelfList = true
     let dbData: StockDBData = {
       id: 0,
       code: bean.code,
@@ -176,5 +181,13 @@ struct SearchStockPage {
       })
       this.dataSource.notifyData(list)
     })
+  }
+
+  private context = getContext(this) as common.UIAbilityContext;
+
+  aboutToDisappear() {
+    if (this.needRefreshSelfList) {
+      this.context.eventHub.emit(Event_Refresh_SelfStockList);
+    }
   }
 }

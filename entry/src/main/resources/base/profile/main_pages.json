@@ -7,7 +7,6 @@
     "pages/HttpPage",
     "pages/CanvasPage",
     "pages/SearchStockPage",
-    "pages/SelfStockPage",
     "pages/ContentPage",
     "pages/home/HomePage",
     "pages/quotes/QuotesPage",
