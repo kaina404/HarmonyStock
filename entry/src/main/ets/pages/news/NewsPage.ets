@@ -1,6 +1,5 @@
-@Entry
 @Component
-export struct NewsPage {
+export struct NewsComponent {
   @State message: string = 'News'
 
   build() {

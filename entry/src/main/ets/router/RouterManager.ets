@@ -1,6 +1,10 @@
 import router from '@ohos.router'
 
 /**
+ * App容器页面
+ */
+export const Path_Main = 'pages/main/ContentPage'
+/**
  * 搜索股票页面
  */
 export const Path_SearchStockPage = 'pages/SearchStockPage'

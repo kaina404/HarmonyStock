@@ -1,10 +1,9 @@
-import media from '@ohos.multimedia.media'
-import { FinancialPage } from './financial/FinancialPage'
-import { HomePage } from './home/HomePage'
-import { NewsPage } from './news/NewsPage'
-import { QuotesPage } from './quotes/QuotesPage'
-import { SelfStockPage } from './SelfStockPage'
-import { TradePage } from './trade/TradePage'
+import { FinancialComponent } from '../financial/FinancialPage'
+import { HomeComponent } from '../home/HomeComponent'
+import { NewsComponent } from '../news/NewsPage'
+import { QuotesComponent } from '../quotes/QuotesPage'
+import { SelfStockComponent } from '../SelfStockComponent'
+import { TradeComponent } from '../trade/TradePage'
 
 /**
  * 整个App的容器页面，包含了各个TAB的详细页面。
@@ -45,42 +44,42 @@ struct ContentPage {
     Column() {
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
-          HomePage()
+          HomeComponent()
             .width('100%')
             .height('100%')
         }
         .tabBar(this.TabBuilder("首页", $r('app.media.ic_tab_home_select'), $r('app.media.ic_tab_home_unselect'), 0))
 
         TabContent() {
-          QuotesPage()
+          QuotesComponent()
             .width('100%')
             .height('100%')
         }
         .tabBar(this.TabBuilder("行情", $r("app.media.ic_tab_quote_selected"), $r("app.media.ic_tab_quote_unselect"), 1))
 
         TabContent() {
-          SelfStockPage()
+          SelfStockComponent()
             .width('100%')
             .height('100%')
         }
         .tabBar(this.TabBuilder("自选", $r('app.media.ic_tab_self_selected'), $r('app.media.ic_tab_self_unselect'), 2))
 
         TabContent() {
-          TradePage()
+          TradeComponent()
             .width('100%')
             .height('100%')
         }
         .tabBar(this.TabBuilder("交易", $r('app.media.ic_tab_trade_select'), $r("app.media.ic_tab_trade_unselect"), 3))
 
         TabContent() {
-          NewsPage()
+          NewsComponent()
             .width('100%')
             .height('100%')
         }
         .tabBar(this.TabBuilder("资讯", $r('app.media.ic_tab_news_select'), $r('app.media.ic_tab_news_unselect'), 4))
 
         TabContent() {
-          FinancialPage()
+          FinancialComponent()
             .width('100%')
             .height('100%')
         }

@@ -16,7 +16,7 @@ import { Event_Refresh_SelfStockList } from '../viewmodel/EventHubConstant';
  * 支持：置顶股票、置底股票、删除股票。
  */
 @Component
-export struct SelfStockPage {
+export struct SelfStockComponent {
   private context = getContext(this) as common.UIAbilityContext;
   /**
    * 自选股数据库

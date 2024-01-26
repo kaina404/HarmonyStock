@@ -1,6 +1,5 @@
-@Entry
 @Component
-export struct QuotesPage {
+export struct QuotesComponent {
   @State message: string = 'QuotesPage'
 
   build() {

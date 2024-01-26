@@ -1,6 +1,5 @@
-@Entry
 @Component
-export struct HomePage {
+export struct HomeComponent {
   @State message: string = 'HomePage'
 
   build() {

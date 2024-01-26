@@ -1,6 +1,5 @@
-@Entry
 @Component
-export struct TradePage {
+export struct TradeComponent {
   @State message: string = 'HTradePage'
 
   build() {
