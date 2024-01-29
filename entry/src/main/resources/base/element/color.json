@@ -15,6 +15,10 @@
     {
       "name": "split_line_color",
       "value": "#666666"
+    },
+    {
+      "name": "half_translate",
+      "value": "#20FFFFFF"
     }
   ]
 }

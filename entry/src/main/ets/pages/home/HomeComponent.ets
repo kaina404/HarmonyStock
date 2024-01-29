@@ -1,4 +1,5 @@
 import { openPage, Path_WebPage } from '../../router/RouterManager'
+import { HomeTitleSearchWidget } from './HomeTitleSearchWidget'
 import { FeedBean, HomeViewModel } from './HomeViewModel'
 
 /**
@@ -12,7 +13,11 @@ export struct HomeComponent {
   private viewModel = new HomeViewModel()
 
   build() {
-    Column({ space: 16 }) {
+    Column() {
+      HomeTitleSearchWidget()
+        .width('100%')
+        .margin({ bottom: 20 })
+
       Grid() {
         ForEach(this.bannerBeanList, (item: FeedBean, index) => {
           GridItem() {
