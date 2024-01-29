@@ -1,4 +1,6 @@
 import { expect } from '@ohos/hypium';
+import util from '@ohos.util';
+import { Callback } from '../network/RequestStockApi';
 import { DrawRect } from '../pages/DrawRect';
 import { defaultColor, greenColor, redColorRGB } from './Constants';
 
@@ -70,4 +72,28 @@ export function getPriceColor(last: number, open: number): string {
     }
   }
   return defaultColor
+}
+
+/**
+ * https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/js-apis-resource-manager-0000001478181625-V3#ZH-CN_TOPIC_0000001523648882__getrawfilecontent9
+ * 读取RawFile并转为string
+ * @param rawFileName
+ * @param callBack
+ * @param component
+ */
+export function getRawFileJSON(rawFileName: string, callBack: Callback<any>, component?: Object) {
+  getContext(component)
+    .getApplicationContext()
+    .resourceManager
+    .getRawFileContent(rawFileName)
+    .then((value) => {
+      let rawFile: Uint8Array = value
+      var textDecoder = new util.TextDecoder('utf-8', { ignoreBOM: true })
+      var jsonStr = textDecoder.decode(rawFile, { stream: false })
+      const response = JSON.parse(jsonStr)
+      callBack(response)
+    })
+    .catch((error) => {
+      callBack(null)
+    })
 }

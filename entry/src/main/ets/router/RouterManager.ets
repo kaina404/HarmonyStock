@@ -15,7 +15,7 @@ export const Path_StockDetailPage = 'pages/StockDetailPage'
 /**
  * WebView H5页面
  */
-export const Path_HttpPage = 'pages/HttpPage'
+export const Path_WebPage = 'pages/WebPage'
 /**
  * 自选股页面
  */

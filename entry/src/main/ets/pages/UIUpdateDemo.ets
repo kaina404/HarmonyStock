@@ -1,5 +1,5 @@
 import router from '@ohos.router';
-import { openPage, Path_HttpPage, Path_StockDetailPage } from '../router/RouterManager';
+import { openPage, Path_StockDetailPage } from '../router/RouterManager';
 
 //状态驱动UI更新
 @Entry
@@ -22,9 +22,9 @@ struct UIUpdateDemo {
         Button(this.isEditModel ? "进入编辑模式" : "非编辑模式")
           .onClick(() => {
             // this.isEditModel = !this.isEditModel
-            openPage({ url: Path_HttpPage, params: {
-              'stockCode': 'https://www.baidu.com'
-            } })
+            // openPage({ url: Path_HttpPage, params: {
+            //   'stockCode': 'https://www.baidu.com'
+            // } })
           })
       }
       .width('100%')

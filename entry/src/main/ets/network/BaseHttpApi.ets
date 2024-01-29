@@ -14,6 +14,7 @@ export async function sendHttpRequest(url: string, method?: http.RequestMethod):
     connectTimeout: 5000,
     readTimeout: 5000,
     header: {
+      'platform':'Android',
       'Proxy-Connection': 'keep-alive',
       'Content-Type': 'application/json',
       'Accept-Encoding': 'gzip, deflate',

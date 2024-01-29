@@ -11,6 +11,8 @@ import { openPage, Path_SearchStockPage, Path_StockDetailPage } from '../router/
 import { Event_Refresh_SelfStockList } from '../viewmodel/EventHubConstant';
 
 /**
+ * LazyForEach:数据懒加载
+ * https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-rendering-control-lazyforeach-0000001524417213-V3
  * 自选股列表页面
  * 添加到自选股数据库中的页面均在这里显示
  * 支持：置顶股票、置底股票、删除股票。
@@ -202,7 +204,7 @@ export struct SelfStockComponent {
             })
             .width('100%')
           }
-        }, (item: SelfStockDataBean) => item.uniqueListKey()) //这里需要定制唯一的key
+        }, (item: SelfStockDataBean) => item.uniqueListKey()) //△****这里需要定制唯一的key△****
       }
       .cachedCount(5)
       .divider({
