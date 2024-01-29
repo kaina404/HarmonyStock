@@ -25,12 +25,16 @@ export struct HomeComponent {
             }
             .onClick((event) => {
               if (item.newjumpurl) {
-                openPage({
-                  url: Path_WebPage,
-                  params: {
-                    "url": item.newjumpurl
-                  }
-                })
+                if (item.newjumpurl.startsWith("http")) {
+                  openPage({
+                    url: Path_WebPage,
+                    params: {
+                      "url": item.newjumpurl
+                    }
+                  })
+                } else {
+
+                }
               }
             })
           }
