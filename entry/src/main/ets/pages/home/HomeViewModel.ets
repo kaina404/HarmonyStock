@@ -23,7 +23,7 @@ export class HomeViewModel {
   requestHomeBannerConfig(callBack: Callback<FeedBean[]>) {
     //加载首页的金刚区的本地json文件
     // const url = "https://eq.10jqka.com.cn/eqadmin/tmp/indexFeed/iphone2.txt"
-    getRawFileJSON("home_config.json", ((response => {
+    getRawFileJSON("home_banner_config.json", ((response => {
       if (response) {
         const feedBeanList: FeedBean[] = response.indexApp.map((item: any) => {
           return new FeedBean(item)
