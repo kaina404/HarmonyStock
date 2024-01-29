@@ -18,7 +18,12 @@
     },
     {
       "name": "half_translate",
-      "value": "#20FFFFFF"
+      "value": "#49FFFFFF"
+    }
+  ,
+    {
+      "name": "page_default_color",
+      "value": "#F6F7FB"
     }
   ]
 }

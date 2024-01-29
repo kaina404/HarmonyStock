@@ -45,10 +45,12 @@ export struct HomeComponent {
           }
         })
       }
+      .margin({ left: 16, right: 16 })
       .rowsGap(15)
       .columnsGap(30)
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
     }
+    .backgroundColor($r('app.color.page_default_color'))
     .height('100%')
   }
 
