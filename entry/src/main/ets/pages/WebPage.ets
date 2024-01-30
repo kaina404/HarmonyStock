@@ -40,6 +40,7 @@ struct WebPage {
         Text(this.title)
           .margin(16)
           .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
           .fontWeight(FontWeight.Bold)
           .fontColor(Color.White)
           .alignRules({

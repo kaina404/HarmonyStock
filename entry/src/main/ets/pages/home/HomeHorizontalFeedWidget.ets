@@ -47,8 +47,10 @@ export struct HomeHorizontalFeedWidget {
                   top: { anchor: 'card_title_text', align: VerticalAlign.Bottom },
                   left: { anchor: 'card_title_text', align: HorizontalAlign.Start },
                 })
-                .margin({ left: 16, right: 16, top: 15 })
+                .margin({ left: 16, right: 16, top: 10 })
                 .fontSize(16)
+                .maxLines(3)
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
                 .fontColor($r('app.color.black_text'))
                 .id('cardHttpBeanContent')
             } else if (item.modDataContentCheck()) {
@@ -57,7 +59,9 @@ export struct HomeHorizontalFeedWidget {
                   top: { anchor: 'card_title_text', align: VerticalAlign.Bottom },
                   left: { anchor: 'card_title_text', align: HorizontalAlign.Start },
                 })
-                .margin({ left: 16, right: 16, top: 15 })
+                .maxLines(3)
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
+                .margin({ left: 16, right: 16, top: 10 })
                 .fontSize(16)
                 .fontColor($r('app.color.black_text'))
                 .id('cardHttpBeanContent')
