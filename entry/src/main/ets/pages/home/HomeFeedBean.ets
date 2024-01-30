@@ -9,7 +9,7 @@ export class CardUrl {
 }
 
 
-export class CardData {
+export class ModData {
   header: string = "";
   icon: string = "";
   prefix: string = "";
@@ -17,6 +17,11 @@ export class CardData {
   jump: CardUrl;
   tags:any;
   content_id: string = "";
+  url: string = "";
+  url_v2: string = "";
+  req_desc: string = "";
+  param_list: string[] = [];
+  httpResponse: ApiResponse;
 }
 
 export class Card {
@@ -29,7 +34,7 @@ export class Card {
   card_ext: null | any = null;
   card_polling: boolean = false;
   data_completed: boolean = false;
-  mod_data: CardData[] = [];
+  mod_data: ModData[] = [];
   card_version: number = 0;
   render_key: string = "";
   point: string = "";
@@ -64,4 +69,28 @@ export class HomeFeedBean {
   msg: string = "";
   data: Data = new Data();
   trace_id: string = "";
+}
+
+export interface ApiResponse {
+  status_code: number;
+  data: {
+    list: {
+      content: string;
+      jump: {
+        ios: string;
+        android: string;
+      };
+      tags: {
+        type: string;
+        market: string;
+        background: string;
+        stock_code: string;
+      }[][];
+      prefix: {
+        type: string;
+        value: string;
+      };
+    }[];
+  };
+  status_msg: string;
 }

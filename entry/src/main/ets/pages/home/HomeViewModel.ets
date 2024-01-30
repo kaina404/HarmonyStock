@@ -5,9 +5,10 @@
  */
 import util from '@ohos.util';
 import { getRawFileJSON } from '../../common/CommonUtils';
+import Logger from '../../common/Logger';
 import { sendHttpRequest } from '../../network/BaseHttpApi';
 import { Callback } from '../../network/RequestStockApi';
-import { Card, CardData, CardTitle, CardUrl, Data, Floor, HomeFeedBean, Icon } from './HomeFeedBean';
+import { Card, ModData, CardTitle, CardUrl, Data, Floor, HomeFeedBean, Icon, ApiResponse } from './HomeFeedBean';
 
 export class HomeViewModel {
   //查询首页配置的信息流数据
@@ -73,13 +74,16 @@ export class HomeViewModel {
             card.card_polling = cardData.card_polling;
             card.data_completed = cardData.data_completed;
 
-            const cardDataObj = new CardData();
+            const cardDataObj = new ModData();
             const modData = cardData.mod_data[0]
             if (modData) {
               cardDataObj.header = modData.header;
               cardDataObj.icon = modData.icon;
               cardDataObj.prefix = modData.prefix;
               cardDataObj.content = modData.content;
+              cardDataObj.url = modData.url;
+              cardDataObj.url_v2 = modData.url_v2;
+              cardDataObj.req_desc = modData.req_desc;
               const jump = modData.jump;
               if (jump) {
                 const jumpUrl: CardUrl = new CardUrl()
@@ -129,6 +133,7 @@ export class HomeViewModel {
         jsonBean.trace_id = jsonData.trace_id;
         // jsonBean 对象包含了从 JSON 数据中解析得到的完整数据结构
         callBack(jsonBean)
+        Logger.debug("解析JSON完毕")
       }
     })), this)
   }
