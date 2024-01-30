@@ -27,7 +27,8 @@ export struct HomeHorizontalFeedWidget {
               .fontSize(14)
               .fontColor($r('app.color.black_text'))
               .fontWeight(FontWeight.Bold)
-              .padding({ top: 10, left: 10 })
+              .padding({ top: 10 })
+              .margin({ left: 16, right: 16 })
               .id('card_title_text')
 
             Image($r('app.media.ic_home_right_arrow'))
@@ -37,7 +38,7 @@ export struct HomeHorizontalFeedWidget {
               })
               .width(13)
               .height(13)
-              .margin({ right: 10, top: 10 })
+              .margin({ right: 10, top: 10, left: 16 })
               .id('ic_home_right_arrow')
 
             if (item.cardHttpBean && item.cardHttpBean.content) {
@@ -46,7 +47,7 @@ export struct HomeHorizontalFeedWidget {
                   top: { anchor: 'card_title_text', align: VerticalAlign.Bottom },
                   left: { anchor: 'card_title_text', align: HorizontalAlign.Start },
                 })
-                .margin({ left: 10, top: 15 })
+                .margin({ left: 16, right: 16, top: 15 })
                 .fontSize(16)
                 .fontColor($r('app.color.black_text'))
                 .id('cardHttpBeanContent')
@@ -56,10 +57,38 @@ export struct HomeHorizontalFeedWidget {
                   top: { anchor: 'card_title_text', align: VerticalAlign.Bottom },
                   left: { anchor: 'card_title_text', align: HorizontalAlign.Start },
                 })
-                .margin({ left: 10, top: 15 })
+                .margin({ left: 16, right: 16, top: 15 })
                 .fontSize(16)
                 .fontColor($r('app.color.black_text'))
                 .id('cardHttpBeanContent')
+            }
+            if (item.mod_data && item.mod_data[0] && item.mod_data[0].tags && item.mod_data[0].tags[0] && item.mod_data[0].tags[0]) {
+              List() {
+                ForEach(item.mod_data[0].tags[0], (itemTag, index) => {
+                  ListItem() {
+                    if (itemTag.type === "text" && itemTag.value) {
+                      Text(itemTag.value)
+                        .fontSize(12)
+                        .fontColor($r('app.color.default_txt_color'))
+                        .margin({ left: 2, right: 2, bottom: 5 })
+                    } else if (itemTag.type === "image" && itemTag.value) {
+                      Image(itemTag.value)
+                        .width(15)
+                        .height(15)
+                        .margin({ left: 2, right: 2, bottom: 5 })
+                    }
+                  }
+                })
+              }
+              .margin({ left: 16, right: 16, })
+              .alignRules({
+                bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
+                left: { anchor: '__container__', align: HorizontalAlign.Start },
+              })
+              .id('tagList')
+              .listDirection(Axis.Horizontal)
+              .width('100%')
+              .height(30)
             }
           }
           .margin(8)

@@ -15,7 +15,7 @@ export class ModData {
   prefix: string = "";
   content: string = "";
   jump: CardUrl;
-  tags: any;
+  tags: Tag[][];
   content_id: string = "";
   url: string = "";
   url_v2: string = "";
@@ -46,7 +46,7 @@ export class Card {
       const modData = this.mod_data[0]
       if (modData.httpResponse && modData.httpResponse.data && modData.httpResponse.data.list) {
         const contentList = modData.httpResponse.data.list[0]
-        if(contentList) {
+        if (contentList) {
           return contentList
         }
       }
@@ -107,11 +107,12 @@ export interface Jump {
   android: string;
 }
 
-export interface Tag {
+export class Tag {
   type: string;
   market: string;
   background: string;
   stock_code: string;
+  value: string;
 }
 
 export interface Prefix {

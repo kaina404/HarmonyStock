@@ -8,7 +8,7 @@ import { getRawFileJSON } from '../../common/CommonUtils';
 import Logger from '../../common/Logger';
 import { sendHttpRequest } from '../../network/BaseHttpApi';
 import { Callback } from '../../network/RequestStockApi';
-import { Card, ModData, CardTitle, CardUrl, Data, Floor, HomeFeedBean, Icon, ApiResponse } from './HomeFeedBean';
+import { Card, ModData, CardTitle, CardUrl, Data, Floor, HomeFeedBean, Icon, ApiResponse, Tag } from './HomeFeedBean';
 
 export class HomeViewModel {
   //查询首页配置的信息流数据
@@ -35,99 +35,118 @@ export class HomeViewModel {
         const filteredFloorList = jsonData.data.floor_list.filter((floorData: any) => {
           return floorData.floor_name !== null && floorData.version !== null;
         });
-        const floorList = filteredFloorList.map((floorData: any) => {
-          const floor = new Floor();
-          floor.floor_id = floorData.floor_id;
-          floor.version = floorData.version;
-          floor.floor_name = floorData.floor_name;
-          floor.floor_key = floorData.floor_key;
+        if (filteredFloorList) {
+          const floorList = filteredFloorList.map((floorData: any) => {
+            const floor = new Floor();
+            floor.floor_id = floorData.floor_id;
+            floor.version = floorData.version;
+            floor.floor_name = floorData.floor_name;
+            floor.floor_key = floorData.floor_key;
 
-          const icon = new Icon();
-          icon.day_pic = floorData.icon.day_pic;
-          icon.night_pic = floorData.icon.night_pic;
-          floor.icon = icon;
+            const icon = new Icon();
+            icon.day_pic = floorData.icon.day_pic;
+            icon.night_pic = floorData.icon.night_pic;
+            floor.icon = icon;
 
-          const cardShowList = floorData.card_show_list.map((cardData: any) => {
-            const card = new Card();
-            card.card_id = cardData.card_id;
-            card.card_key = cardData.card_key;
-            card.card_template = cardData.card_template;
-            card.card_size = cardData.card_size;
+            if (floorData.card_show_list) {
+              const cardShowList = floorData.card_show_list.map((cardData: any) => {
+                if (cardData) {
+                  const card = new Card();
+                  card.card_id = cardData.card_id;
+                  card.card_key = cardData.card_key;
+                  card.card_template = cardData.card_template;
+                  card.card_size = cardData.card_size;
 
-            const cardTitle = new CardTitle();
-            cardTitle.value = cardData.card_title.value;
-            cardTitle.type = cardData.card_title.type;
-            card.card_title = cardTitle;
+                  const cardTitle = new CardTitle();
+                  cardTitle.value = cardData.card_title.value;
+                  cardTitle.type = cardData.card_title.type;
+                  card.card_title = cardTitle;
 
-            const cardUrl = new CardUrl();
-            if (cardData.card_url) {
-              if (cardData.card_url.ios) {
-                cardUrl.ios = cardData.card_url.ios;
-              }
-              if (cardData.card_url.android) {
-                cardUrl.android = cardData.card_url.android;
-              }
-            }
-            card.card_url = cardUrl;
+                  const cardUrl = new CardUrl();
+                  if (cardData.card_url) {
+                    if (cardData.card_url.ios) {
+                      cardUrl.ios = cardData.card_url.ios;
+                    }
+                    if (cardData.card_url.android) {
+                      cardUrl.android = cardData.card_url.android;
+                    }
+                  }
+                  card.card_url = cardUrl;
 
-            card.card_ext = cardData.card_ext;
-            card.card_polling = cardData.card_polling;
-            card.data_completed = cardData.data_completed;
+                  card.card_ext = cardData.card_ext;
+                  card.card_polling = cardData.card_polling;
+                  card.data_completed = cardData.data_completed;
 
-            const cardDataObj = new ModData();
-            const modData = cardData.mod_data[0]
-            if (modData) {
-              cardDataObj.header = modData.header;
-              cardDataObj.icon = modData.icon;
-              cardDataObj.prefix = modData.prefix;
-              cardDataObj.content = modData.content;
-              cardDataObj.url = modData.url;
-              cardDataObj.url_v2 = modData.url_v2;
-              cardDataObj.req_desc = modData.req_desc;
-              const jump = modData.jump;
-              if (jump) {
-                const jumpUrl: CardUrl = new CardUrl()
-                if (jump.android) {
-                  jumpUrl.android = jump.android
+                  const cardDataObj = new ModData();
+                  const modData = cardData.mod_data[0]
+                  if (modData) {
+                    cardDataObj.header = modData.header;
+                    cardDataObj.icon = modData.icon;
+                    cardDataObj.prefix = modData.prefix;
+                    cardDataObj.content = modData.content;
+                    cardDataObj.url = modData.url;
+                    cardDataObj.url_v2 = modData.url_v2;
+                    cardDataObj.req_desc = modData.req_desc;
+                    const jump = modData.jump;
+                    if (modData.jump) {
+                      const jumpUrl: CardUrl = new CardUrl()
+                      if (jump.android) {
+                        jumpUrl.android = jump.android
+                      }
+                      if (jump.ios) {
+                        jumpUrl.ios = jump.ios
+                      }
+                      cardDataObj.jump = jumpUrl
+                    }
+                    if (modData && modData.tags && modData.tags[0] && Array.isArray(modData.tags[0])) {
+                      const tags = modData.tags[0].filter((itemTag: any) => itemTag).map((itemTag: any) => {
+                        if (itemTag) {
+                          const tag = new Tag()
+                          if (itemTag.value) {
+                            tag.value = itemTag.value
+                          }
+                          if (itemTag.type) {
+                            tag.type = itemTag.type
+                          }
+                          if (itemTag.market) {
+                            tag.market = itemTag.market
+                          }
+                          if (itemTag.background) {
+                            tag.background = itemTag.background
+                          }
+                          if (itemTag.stock_code) {
+                            tag.stock_code = itemTag.stock_code
+                          }
+                          return tag
+                        }
+                      });
+                      cardDataObj.tags = tags.length > 0 ? [tags] : [];
+                    }
+                    cardDataObj.content_id = modData.content_id;
+                    card.mod_data = [cardDataObj];
+                  }
+
+
+                  card.card_version = cardData.card_version;
+                  card.render_key = cardData.render_key;
+                  card.point = cardData.point;
+                  card.function_id = cardData.function_id;
+
+                  return card;
                 }
-                if (jump.ios) {
-                  jumpUrl.ios = jump.ios
-                }
-                cardDataObj.jump = jumpUrl
-              }
+
+              });
+              floor.card_show_list = cardShowList;
             }
+            floor.card_hidden_list = floorData.card_hidden_list;
+            floor.show_title = floorData.show_title;
 
-            // const tags = cardData.mod_data[0].tags[0].map((tag: any) => {
-            //   return {
-            //     value: tag.value,
-            //     type: tag.type,
-            //   };
-            // });
-            // cardDataObj.tags = [tags];
-
-            if (modData) {
-              cardDataObj.content_id = modData.content_id;
-            }
-
-            card.mod_data = [cardDataObj];
-
-            card.card_version = cardData.card_version;
-            card.render_key = cardData.render_key;
-            card.point = cardData.point;
-            card.function_id = cardData.function_id;
-
-            return card;
+            return floor;
           });
+          data.floor_list = floorList;
+        }
 
-          floor.card_show_list = cardShowList;
 
-          floor.card_hidden_list = floorData.card_hidden_list;
-          floor.show_title = floorData.show_title;
-
-          return floor;
-        });
-
-        data.floor_list = floorList;
         data.channel = jsonData.data.channel;
         jsonBean.data = data;
         jsonBean.trace_id = jsonData.trace_id;
