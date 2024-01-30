@@ -68,8 +68,10 @@ export struct HomeHorizontalFeedWidget {
           .backgroundColor(Color.White)
           .borderRadius(10)
           .onClick((event) => {
-            if (item.card_url.android) {
+            if (item.card_url.android && item.card_url.android.startsWith("http")) {
               openWebViewPage(item.card_url.android, item.card_title.value)
+            } else if (item.mod_data && item.mod_data[0] && item.mod_data[0].jump && item.mod_data[0].jump.android) {
+              openWebViewPage(item.mod_data[0].jump.android)
             }
           })
         }
