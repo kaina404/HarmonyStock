@@ -46,7 +46,7 @@ export struct HomeHorizontalFeedWidget {
                 if (item.stockDataInfo().stock_name) {
                   Text(item.stockDataInfo().stock_name)
                     .fontSize(15)
-                    .margin({ right: 10 })
+                    .margin({ right: 5 })
                     .fontColor($r('app.color.default_txt_color'))
                 }
                 if (item.stockDataInfo().value) {
