@@ -27,7 +27,7 @@ export struct HomeHorizontalFeedWidget {
               .fontSize(14)
               .fontColor($r('app.color.black_text'))
               .fontWeight(FontWeight.Bold)
-              .padding({ left: 8, top: 10 })
+              .padding({ top: 10, left: 10 })
               .id('card_title_text')
 
             Image($r('app.media.ic_home_right_arrow'))
@@ -39,6 +39,28 @@ export struct HomeHorizontalFeedWidget {
               .height(13)
               .margin({ right: 10, top: 10 })
               .id('ic_home_right_arrow')
+
+            if (item.cardHttpBean && item.cardHttpBean.content) {
+              Text(item.cardHttpBean.content)
+                .alignRules({
+                  top: { anchor: 'card_title_text', align: VerticalAlign.Bottom },
+                  left: { anchor: 'card_title_text', align: HorizontalAlign.Start },
+                })
+                .margin({ left: 10, top: 15 })
+                .fontSize(16)
+                .fontColor($r('app.color.black_text'))
+                .id('cardHttpBeanContent')
+            } else if (item.mod_data && item.mod_data[0] && item.mod_data[0].content) {
+              Text(item.mod_data[0].content)
+                .alignRules({
+                  top: { anchor: 'card_title_text', align: VerticalAlign.Bottom },
+                  left: { anchor: 'card_title_text', align: HorizontalAlign.Start },
+                })
+                .margin({ left: 10, top: 15 })
+                .fontSize(16)
+                .fontColor($r('app.color.black_text'))
+                .id('cardHttpBeanContent')
+            }
           }
           .margin(8)
           .width('45%')

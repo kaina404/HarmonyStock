@@ -155,6 +155,9 @@ export class HomeViewModel {
             modData.httpResponse = parsedData
           }
         }
+        if (card) {
+          card.cardHttpBean = card.getCardHttpBean()
+        }
       }
     }
     callBack(jsonBean)

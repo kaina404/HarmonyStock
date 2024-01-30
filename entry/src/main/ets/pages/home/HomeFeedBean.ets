@@ -15,7 +15,7 @@ export class ModData {
   prefix: string = "";
   content: string = "";
   jump: CardUrl;
-  tags:any;
+  tags: any;
   content_id: string = "";
   url: string = "";
   url_v2: string = "";
@@ -39,6 +39,20 @@ export class Card {
   render_key: string = "";
   point: string = "";
   function_id: string = "";
+  cardHttpBean: CardHttpBean
+
+  getCardHttpBean(): CardHttpBean {
+    if (this.mod_data && this.mod_data[0]) {
+      const modData = this.mod_data[0]
+      if (modData.httpResponse && modData.httpResponse.data && modData.httpResponse.data.list) {
+        const contentList = modData.httpResponse.data.list[0]
+        if(contentList) {
+          return contentList
+        }
+      }
+    }
+    return null
+  }
 }
 
 export class Icon {
@@ -73,24 +87,34 @@ export class HomeFeedBean {
 
 export interface ApiResponse {
   status_code: number;
-  data: {
-    list: {
-      content: string;
-      jump: {
-        ios: string;
-        android: string;
-      };
-      tags: {
-        type: string;
-        market: string;
-        background: string;
-        stock_code: string;
-      }[][];
-      prefix: {
-        type: string;
-        value: string;
-      };
-    }[];
-  };
+  data: CardHttpData;
   status_msg: string;
+}
+
+export interface CardHttpData {
+  list: CardHttpBean[];
+}
+
+export interface CardHttpBean {
+  content: string;
+  jump: Jump;
+  tags: Tag[][];
+  prefix: Prefix;
+}
+
+export interface Jump {
+  ios: string;
+  android: string;
+}
+
+export interface Tag {
+  type: string;
+  market: string;
+  background: string;
+  stock_code: string;
+}
+
+export interface Prefix {
+  type: string;
+  value: string;
 }
