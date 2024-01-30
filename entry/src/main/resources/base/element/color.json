@@ -13,6 +13,10 @@
       "value": "#666666"
     },
     {
+      "name": "black_text",
+      "value": "#000000"
+    },
+    {
       "name": "split_line_color",
       "value": "#666666"
     },

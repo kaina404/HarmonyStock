@@ -1,6 +1,8 @@
 import { openPage, Path_WebPage } from '../../router/RouterManager'
+import { Floor, HomeFeedBean } from './HomeFeedBean'
+import { HomeHorizontalFeedWidget } from './HomeHorizontalFeedWidget'
 import { HomeTitleSearchWidget } from './HomeTitleSearchWidget'
-import { FeedBean, HomeViewModel } from './HomeViewModel'
+import { HomeBannerBean, HomeViewModel } from './HomeViewModel'
 
 /**
  * 首页页面的内容
@@ -9,7 +11,8 @@ import { FeedBean, HomeViewModel } from './HomeViewModel'
 @Component
 export struct HomeComponent {
   @State message: string = 'HomePage'
-  @State bannerBeanList: FeedBean[] = []
+  @State floor: Floor = null
+  @State bannerBeanList: HomeBannerBean[] = []
   private viewModel = new HomeViewModel()
 
   build() {
@@ -17,9 +20,8 @@ export struct HomeComponent {
       HomeTitleSearchWidget()
         .width('100%')
         .margin({ bottom: 20 })
-
       Grid() {
-        ForEach(this.bannerBeanList, (item: FeedBean, index) => {
+        ForEach(this.bannerBeanList, (item: HomeBannerBean, index) => {
           GridItem() {
             Column({ space: 6 }) {
               Image(item.gray_imgurl)
@@ -45,10 +47,18 @@ export struct HomeComponent {
           }
         })
       }
+      .width('100%')
+      .height('10%')
       .margin({ left: 16, right: 16 })
       .rowsGap(15)
       .columnsGap(30)
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+
+      if (this.floor && this.floor.floor_name && this.floor.card_show_list) {
+        HomeHorizontalFeedWidget({ floor: this.floor })
+          .width('100%')
+          .height('20%')
+      }
     }
     .backgroundColor($r('app.color.page_default_color'))
     .height('100%')
@@ -57,6 +67,14 @@ export struct HomeComponent {
   aboutToAppear() {
     this.viewModel.requestHomeBannerConfig((responseList) => {
       this.bannerBeanList = responseList
+    })
+    this.viewModel.requestFeedData((value: HomeFeedBean) => {
+      const horizontalList = value.data.floor_list.filter((floorData: Floor) => {
+        return floorData.floor_id === 2186
+      })
+      if (horizontalList) {
+        this.floor = horizontalList[0]
+      }
     })
   }
 }

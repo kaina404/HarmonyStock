@@ -7,26 +7,139 @@ import util from '@ohos.util';
 import { getRawFileJSON } from '../../common/CommonUtils';
 import { sendHttpRequest } from '../../network/BaseHttpApi';
 import { Callback } from '../../network/RequestStockApi';
+import { Card, CardData, CardTitle, CardUrl, Data, Floor, HomeFeedBean, Icon } from './HomeFeedBean';
 
 export class HomeViewModel {
   //查询首页配置的信息流数据
-  requestFeedData() {
+  requestFeedData(callBack: Callback<HomeFeedBean>) {
     // const url = "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/old_user?platform=iphone&version=I037.08.488&is_reflow=0"
     // sendHttpRequest(url).then((data => {
     //   const response = JSON.parse(data.result as string)
     //   console.log("fmeow")
     //   JSON.stringify()
     // }))
+    //加载首页的信息流的本地json文件
+    // const url = "https://eq.10jqka.com.cn/eqadmin/tmp/indexFeed/iphone2.txt"
+    getRawFileJSON("home_config.json", ((jsonData => {
+      if (jsonData) {
+        // 创建对应的 TypeScript 类实例并填充数据
+        const jsonBean = new HomeFeedBean();
+        jsonBean.code = jsonData.code;
+        jsonBean.msg = jsonData.msg;
 
+        const data = new Data();
+        data.strategy_id = jsonData.data.strategy_id;
+        data.version = jsonData.data.version;
+        // 过滤 floor_list 中 floor_name 或 version 为 null 的数据
+        const filteredFloorList = jsonData.data.floor_list.filter((floorData: any) => {
+          return floorData.floor_name !== null && floorData.version !== null;
+        });
+        const floorList = filteredFloorList.map((floorData: any) => {
+          const floor = new Floor();
+          floor.floor_id = floorData.floor_id;
+          floor.version = floorData.version;
+          floor.floor_name = floorData.floor_name;
+          floor.floor_key = floorData.floor_key;
+
+          const icon = new Icon();
+          icon.day_pic = floorData.icon.day_pic;
+          icon.night_pic = floorData.icon.night_pic;
+          floor.icon = icon;
+
+          const cardShowList = floorData.card_show_list.map((cardData: any) => {
+            const card = new Card();
+            card.card_id = cardData.card_id;
+            card.card_key = cardData.card_key;
+            card.card_template = cardData.card_template;
+            card.card_size = cardData.card_size;
+
+            const cardTitle = new CardTitle();
+            cardTitle.value = cardData.card_title.value;
+            cardTitle.type = cardData.card_title.type;
+            card.card_title = cardTitle;
+
+            const cardUrl = new CardUrl();
+            if (cardData.card_url) {
+              if (cardData.card_url.ios) {
+                cardUrl.ios = cardData.card_url.ios;
+              }
+              if (cardData.card_url.android) {
+                cardUrl.android = cardData.card_url.android;
+              }
+            }
+            card.card_url = cardUrl;
+
+            card.card_ext = cardData.card_ext;
+            card.card_polling = cardData.card_polling;
+            card.data_completed = cardData.data_completed;
+
+            const cardDataObj = new CardData();
+            const modData = cardData.mod_data[0]
+            if (modData) {
+              cardDataObj.header = modData.header;
+              cardDataObj.icon = modData.icon;
+              cardDataObj.prefix = modData.prefix;
+              cardDataObj.content = modData.content;
+              const jump = modData.jump;
+              if (jump) {
+                const jumpUrl: CardUrl = new CardUrl()
+                if (jump.android) {
+                  jumpUrl.android = jump.android
+                }
+                if (jump.ios) {
+                  jumpUrl.ios = jump.ios
+                }
+                cardDataObj.jump = jumpUrl
+              }
+            }
+
+            // const tags = cardData.mod_data[0].tags[0].map((tag: any) => {
+            //   return {
+            //     value: tag.value,
+            //     type: tag.type,
+            //   };
+            // });
+            // cardDataObj.tags = [tags];
+
+            if (modData) {
+              cardDataObj.content_id = modData.content_id;
+            }
+
+            card.mod_data = [cardDataObj];
+
+            card.card_version = cardData.card_version;
+            card.render_key = cardData.render_key;
+            card.point = cardData.point;
+            card.function_id = cardData.function_id;
+
+            return card;
+          });
+
+          floor.card_show_list = cardShowList;
+
+          floor.card_hidden_list = floorData.card_hidden_list;
+          floor.show_title = floorData.show_title;
+
+          return floor;
+        });
+
+        data.floor_list = floorList;
+        data.channel = jsonData.data.channel;
+        jsonBean.data = data;
+        jsonBean.trace_id = jsonData.trace_id;
+        // jsonBean 对象包含了从 JSON 数据中解析得到的完整数据结构
+        callBack(jsonBean)
+      }
+    })), this)
   }
 
-  requestHomeBannerConfig(callBack: Callback<FeedBean[]>) {
+  requestHomeBannerConfig(callBack: Callback<HomeBannerBean[]>) {
     //加载首页的金刚区的本地json文件
     // const url = "https://eq.10jqka.com.cn/eqadmin/tmp/indexFeed/iphone2.txt"
     getRawFileJSON("home_banner_config.json", ((response => {
       if (response) {
-        const feedBeanList: FeedBean[] = response.indexApp.map((item: any) => {
-          return new FeedBean(item)
+        const feedBeanList: HomeBannerBean[] = response.indexApp.map((item: any) => {
+          return new HomeBannerBean(item)
         })
         callBack(feedBeanList)
       }
@@ -34,7 +147,7 @@ export class HomeViewModel {
   }
 }
 
-export class FeedBean {
+export class HomeBannerBean {
   id: string;
   logid: string;
   title: string;
