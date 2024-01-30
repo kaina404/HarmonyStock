@@ -41,6 +41,17 @@ export class Card {
   function_id: string = "";
   cardHttpBean: CardHttpBean
 
+  modDataContentCheck() {
+    return this.mod_data && this.mod_data[0] && this.mod_data[0].content
+  }
+
+  isModDataCheck(): boolean {
+    if (this.mod_data && this.mod_data[0] && this.mod_data[0].tags && this.mod_data[0].tags[0] && this.mod_data[0].tags[0]) {
+      return true
+    }
+    return false
+  }
+
   getCardHttpBean(): CardHttpBean {
     if (this.mod_data && this.mod_data[0]) {
       const modData = this.mod_data[0]

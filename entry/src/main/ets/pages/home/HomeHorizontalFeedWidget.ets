@@ -51,7 +51,7 @@ export struct HomeHorizontalFeedWidget {
                 .fontSize(16)
                 .fontColor($r('app.color.black_text'))
                 .id('cardHttpBeanContent')
-            } else if (item.mod_data && item.mod_data[0] && item.mod_data[0].content) {
+            } else if (item.modDataContentCheck()) {
               Text(item.mod_data[0].content)
                 .alignRules({
                   top: { anchor: 'card_title_text', align: VerticalAlign.Bottom },
@@ -62,7 +62,7 @@ export struct HomeHorizontalFeedWidget {
                 .fontColor($r('app.color.black_text'))
                 .id('cardHttpBeanContent')
             }
-            if (item.mod_data && item.mod_data[0] && item.mod_data[0].tags && item.mod_data[0].tags[0] && item.mod_data[0].tags[0]) {
+            if (item.isModDataCheck()) {
               List() {
                 ForEach(item.mod_data[0].tags[0], (itemTag, index) => {
                   ListItem() {
