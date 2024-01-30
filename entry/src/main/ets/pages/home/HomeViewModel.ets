@@ -134,8 +134,30 @@ export class HomeViewModel {
         // jsonBean 对象包含了从 JSON 数据中解析得到的完整数据结构
         callBack(jsonBean)
         Logger.debug("解析JSON完毕")
+        this.processAsyncRequests(callBack, jsonBean)
       }
     })), this)
+  }
+
+  /**
+   * 部分数据的填充，如果  modData.req_desc == "HTTP_GET"  ，则需要填充内部的httpResponse数据。
+   * @param callBack
+   * @param jsonBean
+   */
+  async processAsyncRequests(callBack, jsonBean) {
+    const floorListFor = jsonBean.data.floor_list
+    for (const floor of floorListFor) {
+      for (const card of floor.card_show_list) {
+        for (const modData of card.mod_data) {
+          if (modData.url_v2 && modData.req_desc == "HTTP_GET") {
+            const response = await sendHttpRequest(modData.url_v2)
+            const parsedData: ApiResponse = JSON.parse(response.result as string);
+            modData.httpResponse = parsedData
+          }
+        }
+      }
+    }
+    callBack(jsonBean)
   }
 
   requestHomeBannerConfig(callBack: Callback<HomeBannerBean[]>) {
