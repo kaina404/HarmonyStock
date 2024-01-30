@@ -2,6 +2,7 @@
  * 首页横向滑动的信息流组件
  * 可以横向滑动的多个信息的组件
  */
+import { defaultColor, greenColor, redColor } from '../../common/Constants';
 import { openPage, openWebViewPage, Path_WebPage } from '../../router/RouterManager';
 import { Card, Floor } from './HomeFeedBean';
 
@@ -40,7 +41,37 @@ export struct HomeHorizontalFeedWidget {
               .height(13)
               .margin({ right: 10, top: 10, left: 16 })
               .id('ic_home_right_arrow')
+            if (item.stockDataInfo()) {
+              Row() {
+                if (item.stockDataInfo().stock_name) {
+                  Text(item.stockDataInfo().stock_name)
+                    .fontSize(15)
+                    .margin({ right: 10 })
+                    .fontColor($r('app.color.default_txt_color'))
+                }
+                if (item.stockDataInfo().value) {
+                  if (item.stockDataInfo().value.startsWith("-")) {
+                    Text(item.stockDataInfo().value)
+                      .fontSize(15)
+                      .fontColor(greenColor)
 
+                  } else {
+                    Text(item.stockDataInfo().value)
+                      .fontSize(15)
+                      .fontColor(redColor)
+                  }
+                }
+
+              }
+              .alignRules({
+                bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
+                left: { anchor: '__container__', align: HorizontalAlign.Start },
+              })
+              .width('100%')
+              .height(33)
+              .margin({ right: 10, top: 10, left: 16 })
+              .id('stockDataInfo')
+            }
             if (item.cardHttpBean && item.cardHttpBean.content) {
               Text(item.cardHttpBean.content)
                 .alignRules({
@@ -66,13 +97,13 @@ export struct HomeHorizontalFeedWidget {
                 .fontColor($r('app.color.black_text'))
                 .id('cardHttpBeanContent')
             }
-            if (item.isModDataCheck()) {
+            if (item.isModDataTagsCheck()) {
               List() {
                 ForEach(item.mod_data[0].tags[0], (itemTag, index) => {
                   ListItem() {
                     if (itemTag.type === "text" && itemTag.value) {
                       Text(itemTag.value)
-                        .fontSize(12)
+                        .fontSize(15)
                         .fontColor($r('app.color.default_txt_color'))
                         .margin({ left: 2, right: 2, bottom: 5 })
                     } else if (itemTag.type === "image" && itemTag.value) {

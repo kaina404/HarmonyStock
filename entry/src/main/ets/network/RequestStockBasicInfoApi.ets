@@ -15,7 +15,7 @@ export class RequestStockBasicInfoApi {
    */
   public requestData(stockCode: string, callback: Callback<StockBasicInfoBean>) {
     //发起请求
-    var market = stockCode.startsWith('0') ? 'sz' : 'sh'
+    var market = stockCode.startsWith('6') ? 'sh' : 'sz'
     //http://yunhq.sse.com.cn:32041/v1/sh1/snap/600089
     let url = "http://yunhq.sse.com.cn:32041/v1/" + market + "1/snap/" + stockCode + "?&_=" + new Date().getTime()
     sendHttpRequest(url).then((data) => {
@@ -55,8 +55,8 @@ export class RequestStockBasicInfoApi {
             riseFall,
             ampRate: ampRate,
             amount,
-            change:0,
-            chg_rate:0,
+            change: 0,
+            chg_rate: 0,
             wuDangData: {
               buy: this.parseWuDangData(buyData).sort(compareByPriceDesc),
               sell: this.parseWuDangData(sellData).sort(compareByPriceDesc),
@@ -78,7 +78,7 @@ export class RequestStockBasicInfoApi {
     const wuDangPrices: WuDangPrice[] = [];
     for (let i = 0; i < data.length; i += 2) {
       const price = data[i];
-      const amount = data[i + 1] / 100.0;//除以100是将100股转为对应的1手
+      const amount = data[i + 1] / 100.0; //除以100是将100股转为对应的1手
       wuDangPrices.push({ price, amount });
     }
     return wuDangPrices;
@@ -161,6 +161,60 @@ export class RequestStockBasicInfoApi {
       }
     })
     return stockMap;
+  }
+
+  async asyncRequestData(stockCode: string): Promise<StockBasicInfoBean> {
+    //发起请求
+    var market = stockCode.startsWith('6') ? 'sh' : 'sz'
+    //http://yunhq.sse.com.cn:32041/v1/sh1/snap/600089
+    let url = "http://yunhq.sse.com.cn:32041/v1/" + market + "1/snap/" + stockCode + "?&_=" + new Date().getTime()
+    const sendHttpRequestResponse = await sendHttpRequest(url)
+    if (sendHttpRequestResponse.responseCode == 200) {
+      let response = sendHttpRequestResponse.result
+      let stockInfoJSON = JSON.parse(response as string)
+      //"特变电工", name
+      // 14.26,open
+      // 14.26,prev_close
+      // 14.5,high
+      // 14.23,low
+      // 14.49,last
+      // 0.23,riseFall
+      // 1.61,ampRate
+      // 44849128,volume
+      // 646155832,amount
+      // 6700, ??
+      // 27782893, ??
+      // 17066235,??
+      const [
+        name, open, prev_close, high, low, last, riseFall
+        , ampRate, volume, amount, unknown, unknown2
+        , unknown3, buyData, sellData] = stockInfoJSON.snap
+
+      const stockBasicInfo: StockBasicInfoBean = {
+        code: stockInfoJSON.code,
+        date: stockInfoJSON.date,
+        time: stockInfoJSON.time,
+        snap: {
+          name,
+          open,
+          last,
+          prev_close,
+          high,
+          low,
+          volume,
+          riseFall,
+          ampRate: ampRate,
+          amount,
+          change: 0,
+          chg_rate: 0,
+          wuDangData: {
+            buy: this.parseWuDangData(buyData).sort(compareByPriceDesc),
+            sell: this.parseWuDangData(sellData).sort(compareByPriceDesc),
+          }
+        }
+      }
+      return stockBasicInfo
+    }
   }
 }
 

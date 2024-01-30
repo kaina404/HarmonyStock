@@ -4,10 +4,12 @@
  * https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/old_user?platform=iphone&version=I037.08.488&is_reflow=0
  */
 import util from '@ohos.util';
+import { StockBasicInfoBean } from '../../bean/StockBasicInfoBean';
 import { getRawFileJSON } from '../../common/CommonUtils';
 import Logger from '../../common/Logger';
 import { sendHttpRequest } from '../../network/BaseHttpApi';
 import { Callback } from '../../network/RequestStockApi';
+import { RequestStockBasicInfoApi } from '../../network/RequestStockBasicInfoApi';
 import { Card, ModData, CardTitle, CardUrl, Data, Floor, HomeFeedBean, Icon, ApiResponse, Tag } from './HomeFeedBean';
 
 export class HomeViewModel {
@@ -166,12 +168,38 @@ export class HomeViewModel {
   async processAsyncRequests(callBack, jsonBean) {
     const floorListFor = jsonBean.data.floor_list
     for (const floor of floorListFor) {
-      for (const card of floor.card_show_list) {
-        for (const modData of card.mod_data) {
+      for (const tmpCard of floor.card_show_list) {
+        const card: Card = tmpCard
+        for (const tmpModData of card.mod_data) {
+          const modData: ModData = tmpModData
           if (modData.url_v2 && modData.req_desc == "HTTP_GET") {
             const response = await sendHttpRequest(modData.url_v2)
             const parsedData: ApiResponse = JSON.parse(response.result as string);
             modData.httpResponse = parsedData
+            if (parsedData) {
+              try {
+                const tag: Tag = parsedData.data.list[0].tags[0][0]
+                if (tag) {
+                  if (tag.type === "stock" && tag.market && tag.stock_code) {
+                    //stock类型的,需要请求行情数据
+                    const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(tag.stock_code)
+                    if (stockResponse) {
+                      const stockInfo: StockBasicInfoBean = stockResponse
+                      if (stockInfo.snap && stockInfo.snap.last && stockInfo.snap.prev_close && stockInfo.snap.prev_close > 0) {
+                        const value = ((stockInfo.snap.last - stockInfo.snap.prev_close) / stockInfo.snap.prev_close * 100).toFixed(2) + "%"
+                        if (!value.startsWith("-")) {
+                          tag.value = "+" + value
+                        }else {
+                          tag.value = value
+                        }
+                      }
+                      tag.stock_name = stockInfo.snap.name
+                    }
+                  }
+                }
+              } catch (e) {
+              }
+            }
           }
         }
         if (card) {

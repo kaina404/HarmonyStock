@@ -41,15 +41,22 @@ export class Card {
   function_id: string = "";
   cardHttpBean: CardHttpBean
 
+  stockDataInfo(): Tag {
+    try {
+      return this.cardHttpBean.tags[0][0]
+    } catch (e) {
+      return null
+    }
+  }
+
   modDataContentCheck() {
     return this.mod_data && this.mod_data[0] && this.mod_data[0].content
   }
 
-  isModDataCheck(): boolean {
-    if (this.mod_data && this.mod_data[0] && this.mod_data[0].tags && this.mod_data[0].tags[0] && this.mod_data[0].tags[0]) {
-      return true
+  isModDataTagsCheck() {
+    if (this.mod_data && this.mod_data[0] && Array.isArray(this.mod_data[0].tags) && Array.isArray(this.mod_data[0].tags[0])) {
+      return this.mod_data[0].tags[0]
     }
-    return false
   }
 
   getCardHttpBean(): CardHttpBean {
@@ -96,10 +103,24 @@ export class HomeFeedBean {
   trace_id: string = "";
 }
 
-export interface ApiResponse {
+export class ApiResponse {
   status_code: number;
   data: CardHttpData;
   status_msg: string;
+
+  isApiResponseTags(): Tag[] {
+    if (this.data
+      && this.data.list
+      && Array.isArray(this.data.list)
+      && this.data.list[0]
+      && this.data.list[0].tags
+      && Array.isArray(this.data.list[0].tags)
+      && this.data.list[0].tags[0]
+      && Array.isArray(this.data.list[0].tags[0])) {
+      return this.data.list[0].tags[0]
+    }
+    return []
+  }
 }
 
 export interface CardHttpData {
@@ -124,6 +145,7 @@ export class Tag {
   background: string;
   stock_code: string;
   value: string;
+  stock_name: string;
 }
 
 export interface Prefix {
