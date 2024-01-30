@@ -2,6 +2,7 @@
  * 首页横向滑动的信息流组件
  * 可以横向滑动的多个信息的组件
  */
+import { openPage, openWebViewPage, Path_WebPage } from '../../router/RouterManager';
 import { Card, Floor } from './HomeFeedBean';
 
 @Component
@@ -28,12 +29,27 @@ export struct HomeHorizontalFeedWidget {
               .fontWeight(FontWeight.Bold)
               .padding({ left: 8, top: 10 })
               .id('card_title_text')
+
+            Image($r('app.media.ic_home_right_arrow'))
+              .alignRules({
+                top: { anchor: '__container__', align: VerticalAlign.Top },
+                right: { anchor: '__container__', align: HorizontalAlign.End },
+              })
+              .width(13)
+              .height(13)
+              .margin({ right: 10, top: 10 })
+              .id('ic_home_right_arrow')
           }
           .margin(8)
           .width('45%')
-          .height('100%')
+          .height('90%')
           .backgroundColor(Color.White)
           .borderRadius(10)
+          .onClick((event) => {
+            if (item.card_url.android) {
+              openWebViewPage(item.card_url.android, item.card_title.value)
+            }
+          })
         }
       })
     }

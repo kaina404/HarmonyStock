@@ -13,7 +13,7 @@ struct WebPage {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
 
   aboutToAppear() {
-    console.log("LOG222 build之前 aboutToAppear")
+    this.title = router.getParams()?.['title']
   }
 
   build() {

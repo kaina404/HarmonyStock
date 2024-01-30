@@ -27,7 +27,15 @@ export function openPage(options?: MyRouterOptions) {
     params: options?.params
   })
 }
-
+export function openWebViewPage( url:string, title?: string) {
+  router.pushUrl({
+    url: Path_WebPage,
+    params: {
+      'url': url,
+      'title': title
+    }
+  })
+}
 export function closePage(options?: MyRouterOptions) {
   router.back({
     url: options?.url,
