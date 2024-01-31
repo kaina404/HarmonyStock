@@ -22,11 +22,11 @@ import {
   ApiResponse,
   Tag,
   DataDesc,
-  ModDataListItem
+  ModDataListItem,
+  CardHttpBean
 } from './HomeFeedBean';
 
 export class HomeViewModel {
-
   getCardHeight(cardSize: number): Length {
     if (cardSize === 2) {
       return '40%'
@@ -265,13 +265,29 @@ export class HomeViewModel {
     for (const floor of floorListFor) {
       for (const tmpCard of floor.card_show_list) {
         const card: Card = tmpCard
+        if(card.card_title.value === "圈子") {
+          console.log("card")
+        }
         for (const tmpModData of card.mod_data) {
           const modData: ModData = tmpModData
-          if (modData.url_v2 && modData.req_desc == "HTTP_GET") {
+          if (modData.url_v2 && modData.req_desc === "HTTP_GET") {
             const response = await sendHttpRequest(modData.url_v2)
             const parsedData: ApiResponse = JSON.parse(response.result as string);
             modData.httpResponse = parsedData
             if (parsedData) {
+              if (modData.list === null || modData.list === undefined || Array.isArray(modData.list) && modData.list.length === 0) {
+                modData.header = parsedData.data.header
+                const list = parsedData.data.list.map((item: CardHttpBean) => {
+                  const modDataListItem: ModDataListItem = new ModDataListItem()
+                  modDataListItem.content = item.content
+                  modDataListItem.jump = item.jump
+                  modDataListItem.tags = item.tags
+                  return modDataListItem
+                })
+                if (list) {
+                  modData.list = list
+                }
+              }
               try {
                 const tag: Tag = parsedData.data.list[0].tags[0][0]
                 if (tag) {

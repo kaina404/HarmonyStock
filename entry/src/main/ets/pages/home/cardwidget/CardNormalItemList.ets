@@ -66,6 +66,9 @@ export struct CardNormalItemListWidget {
 }
 
 function getHeight(data: ModDataListItem[]): Length {
+  if(data.length === 1) {
+    return '100%'
+  }
   var height = 100 / data.length * 0.8
   return height.toString() + '%'
 }

@@ -10,7 +10,6 @@ export class CardUrl {
 
 
 export class ModData {
-  header: string = "";
   icon: string = "";
   prefix: string = "";
   content: string;
@@ -23,6 +22,8 @@ export class ModData {
   req_desc: string = "";
   param_list: string[] = [];
   httpResponse: ApiResponse;
+
+  header: Tag[];
   list: ModDataListItem[] = [];
 }
 
@@ -30,6 +31,7 @@ export class ModDataListItem {
   prefix: Prefix;
   data: Tag;
   title: string;
+  content: string;
   jump: Jump;
   data_desc: DataDesc[] = [];
   type: string;
@@ -37,6 +39,7 @@ export class ModDataListItem {
   stock_code: string;
   value: string;
   name: string;
+  tags: Tag[][];
 }
 
 export class DataDesc {
@@ -146,6 +149,7 @@ export class ApiResponse {
 
 export interface CardHttpData {
   list: CardHttpBean[];
+  header: Tag[];
 }
 
 export interface CardHttpBean {
