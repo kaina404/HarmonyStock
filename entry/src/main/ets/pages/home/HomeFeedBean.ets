@@ -13,7 +13,8 @@ export class ModData {
   header: string = "";
   icon: string = "";
   prefix: string = "";
-  content: string = "";
+  content: string;
+  contentObj: DataDesc;
   jump: CardUrl;
   tags: Tag[][];
   content_id: string = "";
@@ -22,6 +23,26 @@ export class ModData {
   req_desc: string = "";
   param_list: string[] = [];
   httpResponse: ApiResponse;
+  list: ModDataListItem[] = [];
+}
+
+export class ModDataListItem {
+  prefix: Prefix;
+  data: Tag;
+  title: string;
+  jump: Jump;
+  data_desc: DataDesc[] = [];
+  type: string;
+  market: string;
+  stock_code: string;
+  value: string;
+  name: string;
+}
+
+export class DataDesc {
+  color: string;
+  type: string;
+  value: string;
 }
 
 export class Card {

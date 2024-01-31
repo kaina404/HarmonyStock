@@ -10,7 +10,19 @@ import Logger from '../../common/Logger';
 import { sendHttpRequest } from '../../network/BaseHttpApi';
 import { Callback } from '../../network/RequestStockApi';
 import { RequestStockBasicInfoApi } from '../../network/RequestStockBasicInfoApi';
-import { Card, ModData, CardTitle, CardUrl, Data, Floor, HomeFeedBean, Icon, ApiResponse, Tag } from './HomeFeedBean';
+import {
+  Card,
+  ModData,
+  CardTitle,
+  CardUrl,
+  Data,
+  Floor,
+  HomeFeedBean,
+  Icon,
+  ApiResponse,
+  Tag,
+  DataDesc
+} from './HomeFeedBean';
 
 export class HomeViewModel {
   //查询首页配置的信息流数据
@@ -90,7 +102,25 @@ export class HomeViewModel {
                   cardDataObj.header = modData.header;
                   cardDataObj.icon = modData.icon;
                   cardDataObj.prefix = modData.prefix;
-                  cardDataObj.content = modData.content;
+                  //接口 JSON 返回的有可能是string，还有可能是一个object
+                  if (typeof modData.content === "string") {
+                    try {
+                      cardDataObj.content = modData.content;
+                    } catch (e) {
+                      Logger.debug("Error")
+                    }
+                  } else if (typeof modData.content === "object" && modData.content !== null) {
+                    try {
+                      const contentObj = new DataDesc()
+                      contentObj.color = modData.content.color
+                      contentObj.type = modData.content.type
+                      contentObj.value = modData.content.value
+                      cardDataObj.contentObj = contentObj
+                    } catch (e) {
+                      Logger.debug("Error")
+                    }
+                  }
+
                   cardDataObj.url = modData.url;
                   cardDataObj.url_v2 = modData.url_v2;
                   cardDataObj.req_desc = modData.req_desc;
@@ -194,7 +224,7 @@ export class HomeViewModel {
                         const value = ((stockInfo.snap.last - stockInfo.snap.prev_close) / stockInfo.snap.prev_close * 100).toFixed(2) + "%"
                         if (!value.startsWith("-")) {
                           tag.value = "+" + value
-                        }else {
+                        } else {
                           tag.value = value
                         }
                       }
