@@ -19,13 +19,14 @@ export struct FeedCardNormalWidget {
     RelativeContainer() {
       if (this.viewModel.checkData(this.card)) {
         Text(this.card.card_title.value)
+          .maxLines(2)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
           .alignRules({
             top: { anchor: '__container__', align: VerticalAlign.Top },
             left: { anchor: '__container__', align: HorizontalAlign.Start },
           })
           .fontSize(14)
-          .fontColor($r('app.color.black_text'))
-          .fontWeight(FontWeight.Bold)
+          .fontColor($r('app.color.default_txt_color'))
           .padding({ top: 10 })
           .margin({ left: 16, right: 16 })
           .id("card_card_title_value")
@@ -37,6 +38,7 @@ export struct FeedCardNormalWidget {
               top: { anchor: 'card_card_title_value', align: VerticalAlign.Bottom },
               left: { anchor: '__container__', align: HorizontalAlign.Start },
             })
+            .padding({ left: 16, right: 16 })
             .id("CardNormalItemListWidget")
         }
       }

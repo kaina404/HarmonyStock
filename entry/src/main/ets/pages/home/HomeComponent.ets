@@ -83,12 +83,6 @@ export struct HomeComponent {
       this.bannerBeanList = responseList
     })
     this.viewModel.requestFeedData((value: HomeFeedBean) => {
-      // const horizontalList = value.data.floor_list.filter((floorData: Floor) => {
-      //   return floorData.floor_id === 2186
-      // })
-      // if (horizontalList) {
-      //   this.floorList = value.data.floor_list
-      // }
       this.floorList = value.data.floor_list
     })
   }

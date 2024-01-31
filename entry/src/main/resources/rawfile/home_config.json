@@ -135,6 +135,56 @@
             "function_id": "117"
           },
           {
+            "card_id": 1836,
+            "card_key": "yekatouzibidunew",
+            "card_template": "NO_SCHEMA",
+            "card_size": 3,
+            "card_title": {
+              "value": "投资必读",
+              "type": "text"
+            },
+            "card_url": {
+              "ios": "client.html?action=ymtz^webid=2305^url=https://news.10jqka.com.cn/app/invest_read/index.html?fullscreen=1^mode=new^showStatusBar=0",
+              "android": "client.html?action=ymtz^webid=2804^url=https://news.10jqka.com.cn/app/invest_read/index.html?fullscreen=1^mode=new^fullscreen=1^notitlebar=1"
+            },
+            "card_ext": null,
+            "card_polling": false,
+            "data_completed": true,
+            "mod_data": [
+              {
+                "header": null,
+                "icon": null,
+                "prefix": null,
+                "content": "涨停复盘：沪指跌1.48%再度失守2800点 两市超百股跌停",
+                "jump": {
+                  "ios": "https://news.10jqka.com.cn/m654641450/",
+                  "android": "https://news.10jqka.com.cn/m654641450/"
+                },
+                "tags": [
+                  [
+                    {
+                      "value": "https://u.thsi.cn/imgsrc/sns/d610227883e88d477f4742c610ded805_48_48.png",
+                      "type": "image"
+                    },
+                    {
+                      "value": "热点复盘",
+                      "type": "text"
+                    },
+                    {
+                      "value": "18:30",
+                      "type": "text"
+                    }
+                  ]
+                ],
+                "content_id": null
+              }
+            ],
+            "card_version": 7725,
+            "render_key": "contentData",
+            "point": null,
+            "function_id": ""
+          },
+          {
             "card_id": 1802,
             "card_key": "yekabeixiangzijinnew",
             "card_template": "NO_SCHEMA",
@@ -166,56 +216,6 @@
             "function_id": "39"
           },
           {
-            "card_id": 1836,
-            "card_key": "yekatouzibidunew",
-            "card_template": "NO_SCHEMA",
-            "card_size": 3,
-            "card_title": {
-              "value": "投资必读",
-              "type": "text"
-            },
-            "card_url": {
-              "ios": "client.html?action=ymtz^webid=2305^url=https://news.10jqka.com.cn/app/invest_read/index.html?fullscreen=1^mode=new^showStatusBar=0",
-              "android": "client.html?action=ymtz^webid=2804^url=https://news.10jqka.com.cn/app/invest_read/index.html?fullscreen=1^mode=new^fullscreen=1^notitlebar=1"
-            },
-            "card_ext": null,
-            "card_polling": false,
-            "data_completed": true,
-            "mod_data": [
-              {
-                "header": null,
-                "icon": null,
-                "prefix": null,
-                "content": "全球要闻：美股涨跌不一道指续刷新高 郭明錤“看衰”苹果",
-                "jump": {
-                  "ios": "https://news.10jqka.com.cn/m654628987/",
-                  "android": "https://news.10jqka.com.cn/m654628987/"
-                },
-                "tags": [
-                  [
-                    {
-                      "value": "https://u.thsi.cn/imgsrc/sns/5706cd5d585f33d2e8bab02112a53dbb_48_48.png",
-                      "type": "image"
-                    },
-                    {
-                      "value": "全球要闻",
-                      "type": "text"
-                    },
-                    {
-                      "value": "7:30",
-                      "type": "text"
-                    }
-                  ]
-                ],
-                "content_id": null
-              }
-            ],
-            "card_version": 7725,
-            "render_key": "contentData",
-            "point": null,
-            "function_id": ""
-          },
-          {
             "card_id": 1835,
             "card_key": "yekaquanqiuyaowennew",
             "card_template": "NO_SCHEMA",
@@ -236,17 +236,17 @@
                 "header": null,
                 "icon": null,
                 "prefix": null,
-                "content": "概念速报|同花顺概念板块个股新增概念汇总一览（01月31日）",
+                "content": "【连板天梯】中视传媒九天八板高居龙头，大盘再破2800点",
                 "jump": {
-                  "ios": "https://t.10jqka.com.cn/m/zhibo/pid_336644510.shtml",
-                  "android": "https://t.10jqka.com.cn/m/zhibo/pid_336644510.shtml"
+                  "ios": "https://t.10jqka.com.cn/m/zhibo/pid_336775120.shtml",
+                  "android": "https://t.10jqka.com.cn/m/zhibo/pid_336775120.shtml"
                 },
                 "tags": [
                   [
                     {
                       "type": "stock",
-                      "market": "34",
-                      "stock_code": "200413"
+                      "market": "17",
+                      "stock_code": "600088"
                     }
                   ]
                 ],
@@ -257,6 +257,61 @@
             "render_key": "contentData",
             "point": null,
             "function_id": ""
+          },
+          {
+            "card_id": 1829,
+            "card_key": "yekajihejingjianew",
+            "card_template": "NO_SCHEMA",
+            "card_size": 3,
+            "card_title": {
+              "value": "集合竞价",
+              "type": "text"
+            },
+            "card_url": {
+              "ios": "client.html?action=ymtz^webid=2453",
+              "android": "client.html?action=ymtz^webid=2453"
+            },
+            "card_ext": null,
+            "card_polling": false,
+            "data_completed": true,
+            "mod_data": [
+              {
+                "header": [
+                  {
+                    "value": "09:26分析生成",
+                    "type": "text",
+                    "color": "gray",
+                    "background": ""
+                  }
+                ],
+                "list": [
+                  {
+                    "type": "stock",
+                    "name": "期货概念",
+                    "market": "48",
+                    "fund": {
+                      "value": "-0.58%",
+                      "type": "text"
+                    },
+                    "stock_code": "885570"
+                  },
+                  {
+                    "type": "stock",
+                    "name": "智能座舱",
+                    "market": "48",
+                    "fund": {
+                      "value": "-0.64%",
+                      "type": "text"
+                    },
+                    "stock_code": "886059"
+                  }
+                ]
+              }
+            ],
+            "card_version": 9766,
+            "render_key": "gatherPrice",
+            "point": null,
+            "function_id": "141"
           }
         ],
         "card_hidden_list": null,
@@ -309,30 +364,30 @@
                   {
                     "market": "48",
                     "fund": null,
-                    "name": "脑机接口",
+                    "name": "送转填权",
                     "type": "stock",
-                    "stock_code": "886047"
+                    "stock_code": "885796"
                   },
                   {
                     "market": "48",
                     "fund": null,
-                    "name": "共封装光学（CPO）",
+                    "name": "小米汽车",
                     "type": "stock",
-                    "stock_code": "886033"
+                    "stock_code": "886064"
                   },
                   {
                     "market": "48",
                     "fund": null,
-                    "name": "光伏概念",
+                    "name": "国企改革",
                     "type": "stock",
-                    "stock_code": "885531"
+                    "stock_code": "886021"
                   },
                   {
                     "market": "48",
                     "fund": null,
-                    "name": "BC电池",
+                    "name": "同花顺中特估100",
                     "type": "stock",
-                    "stock_code": "886053"
+                    "stock_code": "886045"
                   }
                 ]
               }
@@ -370,7 +425,7 @@
                     "data": {
                       "type": "stock",
                       "market": "17",
-                      "stock_code": "600088"
+                      "stock_code": "600629"
                     },
                     "data_desc": null,
                     "tags": null
@@ -383,7 +438,7 @@
                     "data": {
                       "type": "stock",
                       "market": "17",
-                      "stock_code": "600119"
+                      "stock_code": "600088"
                     },
                     "data_desc": null,
                     "tags": null
@@ -396,7 +451,7 @@
                     "data": {
                       "type": "stock",
                       "market": "33",
-                      "stock_code": "300750"
+                      "stock_code": "002423"
                     },
                     "data_desc": null,
                     "tags": null
@@ -410,41 +465,99 @@
             "function_id": "212"
           },
           {
-            "card_id": 2048,
-            "card_key": "yekagainiansudinew",
+            "card_id": 1850,
+            "card_key": "yekalonghubanganew",
             "card_template": "NO_SCHEMA",
             "card_size": 3,
             "card_title": {
-              "value": "概念速递",
+              "value": "龙虎榜",
               "type": "text"
             },
-            "card_url": null,
+            "card_url": {
+              "ios": "https://eq.10jqka.com.cn/lhbEnhanced/public/indexV2.html",
+              "android": "https://eq.10jqka.com.cn/lhbEnhanced/public/indexV2.html"
+            },
             "card_ext": null,
             "card_polling": false,
             "data_completed": true,
             "mod_data": [
               {
-                "prefix": null,
-                "content": "“北路智控”新增“专精特新”",
-                "jump": {
-                  "android": "https://eq.10jqka.com.cn/webpage/concept-change/index.html#/",
-                  "ios": "https://eq.10jqka.com.cn/webpage/concept-change/index.html#/"
-                },
-                "tags": [
-                  [
-                    {
-                      "market": "33",
-                      "type": "stock",
-                      "stock_code": "301195"
-                    }
-                  ]
+                "header": [
+                  {
+                    "value": "01-31",
+                    "type": "text",
+                    "color": "gray",
+                    "background": ""
+                  }
+                ],
+                "list": [
+                  {
+                    "prefix": {
+                      "value": "",
+                      "type": "sort"
+                    },
+                    "data": null,
+                    "data_desc": [
+                      {
+                        "value": "中建环能",
+                        "type": "text",
+                        "color": "black"
+                      },
+                      {
+                        "value": "+20.00%",
+                        "type": "text",
+                        "color": "red"
+                      }
+                    ],
+                    "tags": null
+                  },
+                  {
+                    "prefix": {
+                      "value": "",
+                      "type": "sort"
+                    },
+                    "data": null,
+                    "data_desc": [
+                      {
+                        "value": "中建环能",
+                        "type": "text",
+                        "color": "black"
+                      },
+                      {
+                        "value": "+20.00%",
+                        "type": "text",
+                        "color": "red"
+                      }
+                    ],
+                    "tags": null
+                  },
+                  {
+                    "prefix": {
+                      "value": "",
+                      "type": "sort"
+                    },
+                    "data": null,
+                    "data_desc": [
+                      {
+                        "value": "中粮资本",
+                        "type": "text",
+                        "color": "black"
+                      },
+                      {
+                        "value": "+10.06%",
+                        "type": "text",
+                        "color": "red"
+                      }
+                    ],
+                    "tags": null
+                  }
                 ]
               }
             ],
-            "card_version": 6562,
-            "render_key": "contentData",
+            "card_version": 9956,
+            "render_key": "stockList",
             "point": null,
-            "function_id": ""
+            "function_id": "30"
           }
         ],
         "card_hidden_list": [
@@ -462,6 +575,18 @@
               "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391100_4248.png"
             },
             "function_id": "46"
+          },
+          {
+            "card_id": 2048,
+            "card_name": "概念速递",
+            "card_key": "yekagainiansudinew",
+            "card_url": null,
+            "version": 6562,
+            "icon": {
+              "day_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691377628_8280.png",
+              "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691377628_8280.png"
+            },
+            "function_id": ""
           }
         ],
         "show_title": true
@@ -575,6 +700,22 @@
                       {
                         "color": "black",
                         "type": "text",
+                        "value": "江苏神通"
+                      },
+                      {
+                        "color": "red",
+                        "type": "text",
+                        "value": "业绩预增"
+                      }
+                    ],
+                    "tags": []
+                  },
+                  {
+                    "data": null,
+                    "data_desc": [
+                      {
+                        "color": "black",
+                        "type": "text",
                         "value": "深中华A"
                       },
                       {
@@ -600,22 +741,6 @@
                       }
                     ],
                     "tags": []
-                  },
-                  {
-                    "data": null,
-                    "data_desc": [
-                      {
-                        "color": "black",
-                        "type": "text",
-                        "value": "广聚能源"
-                      },
-                      {
-                        "color": "red",
-                        "type": "text",
-                        "value": "业绩大幅上升"
-                      }
-                    ],
-                    "tags": []
                   }
                 ]
               }
@@ -627,21 +752,6 @@
           }
         ],
         "card_hidden_list": [
-          {
-            "card_id": 1830,
-            "card_name": "潜伏日历",
-            "card_key": "yekaqianfuriliAnew",
-            "card_url": {
-              "ios": "https://data.hexin.cn/cfrl/index/",
-              "android": "https://data.hexin.cn/cfrl/index/"
-            },
-            "version": 7732,
-            "icon": {
-              "day_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391292_1325.png",
-              "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391292_1325.png"
-            },
-            "function_id": "161"
-          },
           {
             "card_id": 1954,
             "card_name": "炒股大赛",
@@ -656,6 +766,21 @@
               "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691378062_2695.png"
             },
             "function_id": "355"
+          },
+          {
+            "card_id": 1830,
+            "card_name": "潜伏日历",
+            "card_key": "yekaqianfuriliAnew",
+            "card_url": {
+              "ios": "https://data.hexin.cn/cfrl/index/",
+              "android": "https://data.hexin.cn/cfrl/index/"
+            },
+            "version": 7732,
+            "icon": {
+              "day_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391292_1325.png",
+              "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391292_1325.png"
+            },
+            "function_id": "161"
           },
           {
             "card_id": 1827,
@@ -716,25 +841,22 @@
             "function_id": ""
           },
           {
-            "card_id": 1848,
-            "card_key": "yekazixuangailannew",
+            "card_id": 1862,
+            "card_key": "yekaaizixuanzhenduannew",
             "card_template": "NO_SCHEMA",
             "card_size": 3,
             "card_title": {
-              "value": "自选股概览",
+              "value": "AI自选诊断",
               "type": "text"
             },
-            "card_url": {
-              "ios": "https://ms.10jqka.com.cn/zxgdatenews/?tag=%E8%87%AA%E9%80%89%E6%97%A9%E6%8A%A52",
-              "android": "https://ms.10jqka.com.cn/zxgdatenews/?tag=%E8%87%AA%E9%80%89%E6%97%A9%E6%8A%A52"
-            },
+            "card_url": null,
             "card_ext": null,
             "card_polling": false,
             "data_completed": false,
             "mod_data": [
               {
-                "url": "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/self_code/overview",
-                "url_v2": "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/self_code/overview",
+                "url": "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/self_code/investigate",
+                "url_v2": "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/self_code/investigate",
                 "param_desc": null,
                 "req_desc": "HTTP_POST",
                 "biz_name": null,
@@ -743,10 +865,10 @@
                 ]
               }
             ],
-            "card_version": 7502,
-            "render_key": "optionalOverview",
+            "card_version": 7713,
+            "render_key": "robotContentData",
             "point": null,
-            "function_id": "241"
+            "function_id": "124"
           },
           {
             "card_id": 2091,
@@ -782,16 +904,19 @@
         ],
         "card_hidden_list": [
           {
-            "card_id": 1862,
-            "card_name": "AI自选诊断",
-            "card_key": "yekaaizixuanzhenduannew",
-            "card_url": null,
-            "version": 7713,
-            "icon": {
-              "day_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691390420_1064.png",
-              "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691390420_1064.png"
+            "card_id": 1847,
+            "card_name": "自选股复盘",
+            "card_key": "yekazixuanfupannew",
+            "card_url": {
+              "ios": "https://ms.10jqka.com.cn/zxgdatenews/?tag=%E8%87%AA%E9%80%89%E6%99%9A%E6%8A%A52",
+              "android": "https://ms.10jqka.com.cn/zxgdatenews/?tag=%E8%87%AA%E9%80%89%E6%99%9A%E6%8A%A52"
             },
-            "function_id": "124"
+            "version": 7500,
+            "icon": {
+              "day_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391009_2234.png",
+              "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391009_2234.png"
+            },
+            "function_id": "241"
           }
         ],
         "show_title": true
@@ -826,10 +951,10 @@
               {
                 "list": [
                   {
-                    "title": "特斯拉系列之二十九：2023年营收同比增长19%，新车型预计明年量产【国信汽车】",
+                    "title": "星巴克下调全年收入预期 将预期增长从原先的10%-12%范围下调至7%-9%",
                     "jump": {
-                      "ios": "http://news.10jqka.com.cn/20240131/c654633413.shtml",
-                      "android": "http://news.10jqka.com.cn/20240131/c654633413.shtml"
+                      "ios": "http://news.10jqka.com.cn/20240131/c654641401.shtml",
+                      "android": "http://news.10jqka.com.cn/20240131/c654641401.shtml"
                     },
                     "icon": null,
                     "tags": null,
@@ -838,10 +963,10 @@
                     "tag": null
                   },
                   {
-                    "title": "外盘点金| 震惊！微软谷歌AMD齐拉胯  科技股路在何方？",
+                    "title": "AI芯片“预期差”太大! 华尔街“狮子大开口” AMD抛出的预期不够看",
                     "jump": {
-                      "ios": "http://t.10jqka.com.cn/pid_336642335.shtml",
-                      "android": "http://t.10jqka.com.cn/pid_336642335.shtml"
+                      "ios": "http://stock.10jqka.com.cn/20240131/c654641240.shtml",
+                      "android": "http://stock.10jqka.com.cn/20240131/c654641240.shtml"
                     },
                     "icon": null,
                     "tags": null,
@@ -850,10 +975,10 @@
                     "tag": null
                   },
                   {
-                    "title": "4000亿天价薪酬被判无效！马斯克怒了",
+                    "title": "花旗中国迎来新行长，“老将”陆烜任职资格获监管核准",
                     "jump": {
-                      "ios": "http://stock.10jqka.com.cn/20240131/c654630887.shtml",
-                      "android": "http://stock.10jqka.com.cn/20240131/c654630887.shtml"
+                      "ios": "http://stock.10jqka.com.cn/20240131/c654641001.shtml",
+                      "android": "http://stock.10jqka.com.cn/20240131/c654641001.shtml"
                     },
                     "icon": null,
                     "tags": null,
@@ -870,17 +995,17 @@
             "function_id": ""
           },
           {
-            "card_id": 1868,
-            "card_key": "yekaremenganggunew",
+            "card_id": 1901,
+            "card_key": "yekameigujingxuannew",
             "card_template": "NO_SCHEMA",
             "card_size": 3,
             "card_title": {
-              "value": "热门港股",
+              "value": "美股精选",
               "type": "text"
             },
             "card_url": {
-              "ios": "https://eq.10jqka.com.cn/webpage/gmg-global/index.html#/overseas?currentIndex=1",
-              "android": "https://eq.10jqka.com.cn/webpage/gmg-global/index.html#/overseas?currentIndex=1"
+              "ios": "client://client.html?action=ymtz^webid=2470",
+              "android": "client://client.html?action=ymtz^webid=2470"
             },
             "card_ext": null,
             "card_polling": false,
@@ -888,103 +1013,117 @@
             "mod_data": [
               {
                 "header": null,
+                "jump": null,
                 "list": [
                   {
                     "prefix": {
-                      "value": "STOCK_HK",
-                      "type": "zone"
+                      "value": "STOCK_USA",
+                      "type": "flag"
                     },
-                    "data": {
+                    "stock": {
                       "type": "stock",
-                      "market": "177",
-                      "stock_code": "HK2359"
+                      "market": "NVDA",
+                      "stock_code": "185"
                     },
-                    "data_desc": null,
-                    "tags": null
-                  },
-                  {
-                    "prefix": {
-                      "value": "STOCK_HK",
-                      "type": "zone"
-                    },
+                    "name": "英伟达",
                     "data": {
-                      "type": "stock",
-                      "market": "177",
-                      "stock_code": "HK0700"
+                      "value": "30.32%",
+                      "type": "text",
+                      "color": "red"
                     },
-                    "data_desc": null,
-                    "tags": null
-                  },
-                  {
-                    "prefix": {
-                      "value": "STOCK_HK",
-                      "type": "zone"
-                    },
-                    "data": {
-                      "type": "stock",
-                      "market": "177",
-                      "stock_code": "HK1810"
-                    },
-                    "data_desc": null,
-                    "tags": null
+                    "tags": [
+                      {
+                        "value": "英伟达Q2：碾压预期、利润翻倍、指引爆表...AI热潮舞会继续",
+                        "type": "text",
+                        "color": "gray"
+                      }
+                    ],
+                    "data_desc": {
+                      "value": "近一月",
+                      "type": "text",
+                      "color": "gray"
+                    }
                   }
                 ]
               }
             ],
-            "card_version": 9834,
-            "render_key": "stockList",
+            "card_version": 8373,
+            "render_key": "contentDesc",
             "point": null,
-            "function_id": "212"
+            "function_id": "348"
           },
           {
-            "card_id": 1898,
-            "card_key": "yekananxiangzijinnew",
+            "card_id": 1903,
+            "card_key": "yekadashichicangnew",
             "card_template": "NO_SCHEMA",
             "card_size": 3,
             "card_title": {
-              "value": "南向资金",
+              "value": "大师持仓",
               "type": "text"
             },
             "card_url": {
-              "ios": "https://eq.10jqka.com.cn/webpage/hsgt-project/index.html?pageType=south#/",
-              "android": "https://eq.10jqka.com.cn/webpage/hsgt-project/index.html?pageType=south#/"
+              "ios": "client.html?action=ymtz^mode=new^webid=2305^url=https://eq.10jqka.com.cn/webpage/master-position/index.html#/index",
+              "android": "client.html?action=ymtz^mode=new^webid=4222^url=https://eq.10jqka.com.cn/webpage/master-position/index.html#/index"
             },
             "card_ext": null,
             "card_polling": false,
-            "data_completed": false,
+            "data_completed": true,
             "mod_data": [
               {
-                "url": "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v2/card/yekananxiangzijinnew",
-                "url_v2": "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/card/yekananxiangzijinnew",
-                "param_desc": null,
-                "req_desc": "HTTP_GET",
-                "biz_name": null,
-                "param_list": [
-                  "NONE"
-                ]
+                "image": {
+                  "value": "https://s.thsi.cn/cd/mobileweb-eq-master-position-front-container/images/cik1112520.png",
+                  "type": "image"
+                },
+                "prefix": {
+                  "value": "2023三季度",
+                  "type": "text",
+                  "color": "gray"
+                },
+                "content": {
+                  "value": "新进股票1只股票",
+                  "type": "text",
+                  "color": "red"
+                },
+                "person_name": "查克·阿格拉",
+                "company_name": "Akre Capital Management, LLC"
               }
             ],
-            "card_version": 8576,
-            "render_key": "northWealth",
+            "card_version": 8371,
+            "render_key": "avatarContent",
             "point": null,
-            "function_id": "39"
+            "function_id": "349"
           }
         ],
         "card_hidden_list": [
           {
-            "card_id": 1900,
-            "card_name": "港股打新",
-            "card_key": "yekaganggudaxinnew",
+            "card_id": 1897,
+            "card_name": "热门美股",
+            "card_key": "yekaremenmeigunew",
             "card_url": {
-              "ios": "https://data.10jqka.com.cn/datacenterph/ipo/indexPage.html#/hkStock?isNotShowTab=1&whichTab=",
-              "android": "https://data.10jqka.com.cn/datacenterph/ipo/indexPage.html#/hkStock?isNotShowTab=1&whichTab="
+              "ios": "https://eq.10jqka.com.cn/webpage/gmg-global/index.html#/overseas?currentIndex=0",
+              "android": "https://eq.10jqka.com.cn/webpage/gmg-global/index.html#/overseas?currentIndex=0"
             },
-            "version": 7709,
+            "version": 8578,
             "icon": {
-              "day_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691389649_2199.png",
-              "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691389649_2199.png"
+              "day_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691389684_5585.png",
+              "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691389684_5585.png"
             },
-            "function_id": "277"
+            "function_id": "212"
+          },
+          {
+            "card_id": 1898,
+            "card_name": "南向资金",
+            "card_key": "yekananxiangzijinnew",
+            "card_url": {
+              "ios": "https://eq.10jqka.com.cn/webpage/hsgt-project/index.html?pageType=south#/",
+              "android": "https://eq.10jqka.com.cn/webpage/hsgt-project/index.html?pageType=south#/"
+            },
+            "version": 8576,
+            "icon": {
+              "day_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391641_1496.png",
+              "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391641_1496.png"
+            },
+            "function_id": "39"
           }
         ],
         "show_title": true
@@ -1068,12 +1207,12 @@
                   "type": "text",
                   "value": "上海国企改革"
                 },
-                "num_content": 0.5535,
+                "num_content": 10.0154,
                 "tags": [
                   {
                     "market": "17",
                     "type": "stock",
-                    "stock_code": "600119"
+                    "stock_code": "600629"
                   }
                 ]
               }
@@ -1174,21 +1313,6 @@
         ],
         "card_hidden_list": [
           {
-            "card_id": 1834,
-            "card_name": "股民学校",
-            "card_key": "yekaguminxuexiaonew",
-            "card_url": {
-              "ios": "https://xtz.10jqka.com.cn/webApp/home",
-              "android": "https://xtz.10jqka.com.cn/webApp/home"
-            },
-            "version": 8468,
-            "icon": {
-              "day_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391236_6683.png",
-              "night_pic": "https://s.thsi.cn/js/m/upload/yyzt/1691391236_6683.png"
-            },
-            "function_id": "19"
-          },
-          {
             "card_id": 1952,
             "card_name": "机构调研",
             "card_key": "yekabankuaijuejinjigounew",
@@ -1209,5 +1333,5 @@
     ],
     "channel": "STRATEGY_REVEAL"
   },
-  "trace_id": "991985194eae49978b5f092e8d85d174.2550.17066665926418805"
+  "trace_id": "4c6cc6f8716446fb90fd900c4f1ee7af.19566.17066922204835293"
 }
