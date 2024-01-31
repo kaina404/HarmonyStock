@@ -59,9 +59,9 @@ export struct HomeComponent {
         HomeHorizontalFeedWidget({ floor: this.floorList[0] })
           .width('100%')
           .height('20%')
-        FeedCardNormalWidget({ card: this.floorList[1].card_show_list[1] })
+        FeedCardNormalWidget({ card: this.floorList[1].card_show_list[0] })
           .width('45%')
-          .height('20%')
+          .height(this.viewModel.getCardHeight(this.floorList[1].card_show_list[0].card_size))
       }
     }
     .backgroundColor($r('app.color.page_default_color'))

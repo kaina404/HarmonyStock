@@ -26,6 +26,16 @@ import {
 } from './HomeFeedBean';
 
 export class HomeViewModel {
+
+  getCardHeight(cardSize: number): Length {
+    if (cardSize === 2) {
+      return '40%'
+    } else if (cardSize === 3) {
+      return '20%'
+    }
+    return '20%'
+  }
+
   //查询首页配置的信息流数据
   requestFeedData(callBack: Callback<HomeFeedBean>) {
     //加载首页的信息流数据，从HTTP
@@ -124,13 +134,13 @@ export class HomeViewModel {
                   if (modData.list && Array.isArray(modData.list)) {
                     const modDataItemList = modData.list.filter((itemData: any) => itemData).map((itemData: any) => {
                       const item = new ModDataListItem()
-                      if(itemData.prefix) {
+                      if (itemData.prefix) {
                         item.prefix = {
                           type: itemData.prefix.type,
                           value: itemData.prefix.value
                         }
                       }
-                      if(itemData.data) {
+                      if (itemData.data) {
                         item.data = {
                           type: itemData.data.type,
                           market: itemData.data.market,
@@ -147,7 +157,7 @@ export class HomeViewModel {
                       item.stock_code = itemData.stock_code
                       item.value = itemData.value
                       item.name = itemData.name
-                      if(itemData.jump) {
+                      if (itemData.jump) {
                         item.jump = {
                           ios: itemData.jump.ios,
                           android: itemData.jump.android
