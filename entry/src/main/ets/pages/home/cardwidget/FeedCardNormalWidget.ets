@@ -16,7 +16,7 @@ export struct FeedCardNormalWidget {
   private viewModel: CardViewModel = new CardViewModel(this.card)
 
   build() {
-    Row() {
+    RelativeContainer() {
       if (this.viewModel.checkData(this.card)) {
         Text(this.card.card_title.value)
           .alignRules({
@@ -28,10 +28,16 @@ export struct FeedCardNormalWidget {
           .fontWeight(FontWeight.Bold)
           .padding({ top: 10 })
           .margin({ left: 16, right: 16 })
+          .id("card_card_title_value")
         if (this.viewModel.getCardType(this.card) === CardType.List) {
           CardNormalItemListWidget({ list: this.viewModel.getCardList() })
             .width('100%')
             .height('100%')
+            .alignRules({
+              top: { anchor: 'card_card_title_value', align: VerticalAlign.Bottom },
+              left: { anchor: '__container__', align: HorizontalAlign.Start },
+            })
+            .id("CardNormalItemListWidget")
         }
       }
     }

@@ -21,7 +21,8 @@ import {
   Icon,
   ApiResponse,
   Tag,
-  DataDesc
+  DataDesc,
+  ModDataListItem
 } from './HomeFeedBean';
 
 export class HomeViewModel {
@@ -120,7 +121,48 @@ export class HomeViewModel {
                       Logger.debug("Error")
                     }
                   }
-
+                  if (modData.list && Array.isArray(modData.list)) {
+                    const modDataItemList = modData.list.filter((itemData: any) => itemData).map((itemData: any) => {
+                      const item = new ModDataListItem()
+                      item.prefix = {
+                        type: itemData.type,
+                        value: itemData.value
+                      }
+                      item.data = {
+                        type: itemData.type,
+                        market: itemData.market,
+                        background: itemData.background,
+                        stock_code: itemData.stock_code,
+                        value: itemData.value,
+                        stock_name: itemData.stock_name,
+                      }
+                      item.title = itemData.title
+                      item.type = itemData.type
+                      item.market = itemData.market
+                      item.stock_code = itemData.stock_code
+                      item.value = itemData.value
+                      item.name = itemData.name
+                      item.jump = {
+                        ios: itemData.ios,
+                        android: itemData.android
+                      }
+                      try {
+                        item.data_desc = itemData.map((dataDescItem) => {
+                          const dataDesc: DataDesc = {
+                            color: dataDescItem.color,
+                            type: dataDescItem.type,
+                            value: dataDescItem.value,
+                          }
+                          return dataDesc
+                        })
+                      } catch (e) {
+                      }
+                      return item
+                    })
+                    if (modDataItemList) {
+                      cardDataObj.list = modDataItemList
+                    }
+                  }
                   cardDataObj.url = modData.url;
                   cardDataObj.url_v2 = modData.url_v2;
                   cardDataObj.req_desc = modData.req_desc;
