@@ -124,28 +124,36 @@ export class HomeViewModel {
                   if (modData.list && Array.isArray(modData.list)) {
                     const modDataItemList = modData.list.filter((itemData: any) => itemData).map((itemData: any) => {
                       const item = new ModDataListItem()
-                      item.prefix = {
-                        type: itemData.type,
-                        value: itemData.value
+                      if(itemData.prefix) {
+                        item.prefix = {
+                          type: itemData.prefix.type,
+                          value: itemData.prefix.value
+                        }
                       }
-                      item.data = {
-                        type: itemData.type,
-                        market: itemData.market,
-                        background: itemData.background,
-                        stock_code: itemData.stock_code,
-                        value: itemData.value,
-                        stock_name: itemData.stock_name,
+                      if(itemData.data) {
+                        item.data = {
+                          type: itemData.data.type,
+                          market: itemData.data.market,
+                          background: itemData.data.background,
+                          stock_code: itemData.data.stock_code,
+                          value: itemData.data.value,
+                          stock_name: itemData.data.stock_name,
+                        }
                       }
+
                       item.title = itemData.title
                       item.type = itemData.type
                       item.market = itemData.market
                       item.stock_code = itemData.stock_code
                       item.value = itemData.value
                       item.name = itemData.name
-                      item.jump = {
-                        ios: itemData.ios,
-                        android: itemData.android
+                      if(itemData.jump) {
+                        item.jump = {
+                          ios: itemData.jump.ios,
+                          android: itemData.jump.android
+                        }
                       }
+
                       try {
                         item.data_desc = itemData.map((dataDescItem) => {
                           const dataDesc: DataDesc = {
