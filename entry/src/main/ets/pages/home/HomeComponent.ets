@@ -1,4 +1,5 @@
 import { openPage, Path_WebPage } from '../../router/RouterManager'
+import { FeedCardGridWidget } from './cardwidget/FeedCardGridWidget'
 import { FeedCardNormalWidget } from './cardwidget/FeedCardNormalWidget'
 import { Floor, HomeFeedBean } from './HomeFeedBean'
 import { HomeHorizontalFeedWidget } from './HomeHorizontalFeedWidget'
@@ -56,12 +57,21 @@ export struct HomeComponent {
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
 
       if (this.floorList[0] && this.floorList[0].floor_name && this.floorList[0].card_show_list) {
-        HomeHorizontalFeedWidget({ floor: this.floorList[0] })
-          .width('100%')
-          .height('20%')
-        FeedCardNormalWidget({ card: this.floorList[1].card_show_list[0] })
-          .width('45%')
-          .height(this.viewModel.getCardHeight(this.floorList[1].card_show_list[0].card_size))
+        List() {
+          ForEach(this.floorList, (itemFloor: Floor, index: number) => {
+            if (index === 0) {
+              HomeHorizontalFeedWidget({ floor: itemFloor })
+                .width('100%')
+                .height('20%')
+            } else {
+              FeedCardGridWidget({ floor: itemFloor })
+                .width('100%')
+                .height('40%')
+            }
+          })
+        }
+        .width('100%')
+        .height('100%')
       }
     }
     .backgroundColor($r('app.color.page_default_color'))
