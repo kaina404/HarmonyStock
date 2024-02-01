@@ -17,6 +17,7 @@
  */
 import { StockBasicInfoBean } from '../../bean/StockBasicInfoBean';
 import { getRawFileJSON, getRawFileJSONString } from '../../common/CommonUtils';
+import { greenColor, redColor, redColorRGB } from '../../common/Constants';
 import Logger from '../../common/Logger';
 import { sendHttpRequest } from '../../network/BaseHttpApi';
 import { Callback } from '../../network/RequestStockApi';
@@ -73,9 +74,6 @@ export class HomeViewModel {
     for (const floor of floorListFor) {
       for (const tmpCard of floor.card_show_list) {
         const card: CardItemData = tmpCard
-        if (card.card_id === 1945) {
-          console.log("card")
-        }
         for (const tmpModData of card.mod_data) {
           const modData: ModDataBean = tmpModData
           if (modData.url_v2 && modData.req_desc === "HTTP_GET") {
@@ -91,42 +89,93 @@ export class HomeViewModel {
                 if (Array.isArray(card.mod_data)
                   && Array.isArray(card.mod_data[0].tags)
                   && Array.isArray(card.mod_data[0].tags[0])) {
-
                   const tags: KeyValueData[] = card.mod_data[0].tags[0]
-
-                  for (const tag of tags) {
-                    if (tag) {
-                      if (tag.type === "stock" && tag.market && tag.stock_code) {
-                        //stock类型的,需要请求行情数据
-                        const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(tag.stock_code)
-                        if (stockResponse) {
-                          const stockInfo: StockBasicInfoBean = stockResponse
-                          if (stockInfo.snap && stockInfo.snap.last && stockInfo.snap.prev_close && stockInfo.snap.prev_close > 0) {
-                            const value = ((stockInfo.snap.last - stockInfo.snap.prev_close) / stockInfo.snap.prev_close * 100).toFixed(2) + "%"
-                            if (!value.startsWith("-")) {
-                              tag.value = "+" + value
-                            } else {
-                              tag.value = value
-                            }
-                          }
-                          tag.stock_name = stockInfo.snap.name
-                        }
-                      }
-                    }
-                  }
-                  if (tags) {
-                    modData.tags = [tags]
+                  const newTags = await this.requestStockDetailByTags(tags)
+                  if (newTags) {
+                    modData.tags = [newTags]
                   }
                 }
               } catch (e) {
                 Logger.error(e.message)
               }
             }
+          } else {
+            try {
+              if (Array.isArray(modData.tags) && Array.isArray(modData.tags[0])) {
+                const newTags = await this.requestStockDetailByTags(modData.tags[0])
+                if (newTags) {
+                  modData.tags = [newTags]
+                }
+              } else if (Array.isArray(modData.list)) {
+                const newTags = await this.requestStockDetailByList(modData.list)
+                if (newTags) {
+                  modData.tags = [newTags]
+                }
+              }
+            } catch (e) {
+              Logger.error(e.message)
+            }
           }
         }
       }
     }
     callBack(jsonBean)
+  }
+
+  async requestStockDetailByList(list: KeyValueData[]): Promise<KeyValueData[]> {
+    let tags: KeyValueData[] = []
+    let index = 0
+    for (const item of list) {
+      if (item) {
+        if (item.data.type === "stock" && item.data.market && item.data.stock_code) {
+          //stock类型的,需要请求行情数据
+          const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(item.data.stock_code)
+          if (stockResponse) {
+            const stockInfo: StockBasicInfoBean = stockResponse
+            if (stockInfo.snap && stockInfo.snap.last && stockInfo.snap.prev_close && stockInfo.snap.prev_close > 0) {
+              const value = ((stockInfo.snap.last - stockInfo.snap.prev_close) / stockInfo.snap.prev_close * 100).toFixed(2) + "%"
+              if (!value.startsWith("-")) {
+                item.data.value = "+" + value
+                item.data.color = redColor
+              } else {
+                item.data.value = value
+                item.data.color = greenColor
+              }
+            }
+            item.data.stock_name = stockInfo.snap.name
+          }
+        }
+        tags[index] = item.data
+        index += 1
+      }
+    }
+    return tags
+  }
+
+  async requestStockDetailByTags(tags: KeyValueData[]) {
+    for (const tag of tags) {
+      if (tag) {
+        if (tag.type === "stock" && tag.market && tag.stock_code) {
+          //stock类型的,需要请求行情数据
+          const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(tag.stock_code)
+          if (stockResponse) {
+            const stockInfo: StockBasicInfoBean = stockResponse
+            if (stockInfo.snap && stockInfo.snap.last && stockInfo.snap.prev_close && stockInfo.snap.prev_close > 0) {
+              const value = ((stockInfo.snap.last - stockInfo.snap.prev_close) / stockInfo.snap.prev_close * 100).toFixed(2) + "%"
+              if (!value.startsWith("-")) {
+                tag.value = "+" + value
+                tag.color = redColor
+              } else {
+                tag.value = value
+                tag.color = greenColor
+              }
+            }
+            tag.stock_name = stockInfo.snap.name
+          }
+        }
+      }
+    }
+    return tags
   }
 
   requestHomeBannerConfig(callBack: Callback<HomeBannerBean[]>) {

@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { greenColor, redColorRGB } from '../../common/Constants'
 
 /**
  * @ProjectName : HarmonyStock
@@ -127,6 +128,25 @@ export class KeyValueData {
   prefix: KeyValueData
   data: KeyValueData
   data_desc: ColorTxtBean[]
+  color: string
+
+  valueOrDataValue(): string | null {
+    if (this) {
+      if (this.value) {
+        return this.value
+      } else if (this.data && this.data.value) {
+        return this.data.value
+      }
+    }
+    return null
+  }
+
+  valueColor(): string {
+    if (this.value && this.value.startsWith("-")) {
+      return greenColor
+    }
+    return redColorRGB
+  }
 }
 
 export class JumpData {

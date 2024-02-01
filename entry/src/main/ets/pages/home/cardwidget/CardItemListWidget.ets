@@ -46,8 +46,27 @@ export struct CardItemListWidget {
                   }
                   .alignItems(VerticalAlign.Top)
                 }
-                if (item.data && item.data.stock_code) {
-                  Text(item.data.stock_code)
+                if (item.data) {
+                  Row() {
+                    if (item.data.stock_name) {
+                      Text(item.data.stock_name)
+                        .fontWeight(FontWeight.Medium)
+                    } else if (item.data.stock_code) {
+                      Text(item.data.stock_code)
+                        .fontWeight(FontWeight.Medium)
+                    }
+                    if (item.value) {
+                      Text(item.value)
+                        .fontWeight(FontWeight.Medium)
+                        .fontColor(item.color)
+                    } else if (item.data.value) {
+                      Text(item.data.value)
+                        .fontWeight(FontWeight.Medium)
+                        .fontColor(item.data.color)
+                    }
+                  }
+                  .justifyContent(FlexAlign.SpaceBetween)
+                  .width('100%')
                 }
                 if (item.data_desc) {
                   List() {
@@ -83,7 +102,7 @@ export struct CardItemListWidget {
 }
 
 function getHeight(data: KeyValueData[]): Length {
-  if(data.length === 1) {
+  if (data.length === 1) {
     return '100%'
   }
   var height = 100 / data.length * 0.8
