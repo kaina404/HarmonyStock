@@ -3,8 +3,12 @@
  * 用来将卡片的子组件进行排版的容器
  */
 import { Card, Floor } from '../HomeFeedBean'
-import { FeedCardNormalWidget } from './FeedCardNormalWidget'
-
+import { FeedCardNormalWidget } from './CardNormalListTypeWidget'
+/**
+ * 根据单个Floor的数据渲染一整个模块UI
+ * （模块由3张或者4张小卡片拼接而成）
+ * 小卡片的实现为：FeedCardNormalWidget
+ */
 @Component
 export struct FeedCardGridWidget {
   @Prop floor: Floor

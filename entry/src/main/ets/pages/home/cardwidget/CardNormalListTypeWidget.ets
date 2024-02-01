@@ -3,11 +3,11 @@
  * 使用这个卡片的时候，
  * 宽度 -> 屏幕宽度的45%
  *
- * 高度 -> 屏幕高度的20%
+ * 高度 -> 屏幕高度的20% or 40%
  *
  */
 import { Card, Floor } from '../HomeFeedBean'
-import { CardNormalItemListWidget } from './CardNormalItemList'
+import { CardNormalItemListWidget as CardNormalListTypeWidget } from './CardNormalItemList'
 import { CardType, CardViewModel } from './CardViewModel'
 
 @Component
@@ -31,7 +31,7 @@ export struct FeedCardNormalWidget {
           .margin({ left: 16, right: 16 })
           .id("card_card_title_value")
         if (this.viewModel.getCardType(this.card) === CardType.List) {
-          CardNormalItemListWidget({ list: this.viewModel.getCardList() })
+          CardNormalListTypeWidget({ list: this.viewModel.getCardList() })
             .width('100%')
             .height('100%')
             .alignRules({

@@ -1,6 +1,5 @@
 import { openPage, Path_WebPage } from '../../router/RouterManager'
 import { FeedCardGridWidget } from './cardwidget/FeedCardGridWidget'
-import { FeedCardNormalWidget } from './cardwidget/FeedCardNormalWidget'
 import { Floor, HomeFeedBean } from './HomeFeedBean'
 import { HomeHorizontalFeedWidget } from './HomeHorizontalFeedWidget'
 import { HomeTitleSearchWidget } from './HomeTitleSearchWidget'
