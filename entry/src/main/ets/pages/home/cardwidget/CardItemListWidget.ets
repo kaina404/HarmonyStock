@@ -16,17 +16,17 @@
  * limitations under the License.
  */
 import { redColorRGB } from '../../../common/Constants'
-import { Card, DataDesc, ModDataListItem } from '../HomeFeedBean'
+import { KeyValueData } from '../CardResponse'
 
 @Component
 export struct CardItemListWidget {
-  @Prop list: ModDataListItem[]
+  @Prop list: KeyValueData[]
 
   build() {
     Column() {
       if (this.list) {
         List() {
-          ForEach(this.list, (item: ModDataListItem, index) => {
+          ForEach(this.list, (item: KeyValueData, index) => {
             ListItem() {
               Row() {
                 if (item.name) {
@@ -51,7 +51,7 @@ export struct CardItemListWidget {
                 }
                 if (item.data_desc) {
                   List() {
-                    ForEach(item.data_desc, (dataDescItem: DataDesc, index) => {
+                    ForEach(item.data_desc, (dataDescItem: KeyValueData, index) => {
                       ListItem() {
                         if (dataDescItem.value) {
                           Text(dataDescItem.value)
@@ -82,7 +82,7 @@ export struct CardItemListWidget {
   }
 }
 
-function getHeight(data: ModDataListItem[]): Length {
+function getHeight(data: KeyValueData[]): Length {
   if(data.length === 1) {
     return '100%'
   }

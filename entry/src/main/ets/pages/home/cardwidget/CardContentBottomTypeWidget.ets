@@ -15,6 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ModDataBean } from '../CardResponse'
+
 /**
  * @ProjectName : HarmonyStock
  * @FileName : CardContentBottomTypeWidget
@@ -22,15 +24,24 @@
  * @Time : 2024/2/1
  * @Description :中间显示内容，底部显示子标题
  */
-import { ModData } from '../HomeFeedBean'
+
 /**
  * 中间显示内容，底部显示子标题
  */
 @Component
 export struct CardContentBottomTypeWidget {
-  @Prop modData: ModData
+  @Prop modData: ModDataBean
 
   build() {
+    Column() {
+      if (this.modData) {
+        if (typeof this.modData.content === 'string') {
+          Text(this.modData.content)
+        }
 
+      }
+    }
+    .width('100%')
+    .height('100%')
   }
 }

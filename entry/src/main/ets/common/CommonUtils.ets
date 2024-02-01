@@ -114,3 +114,19 @@ export function getRawFileJSON(rawFileName: string, callBack: Callback<any>, com
       callBack(null)
     })
 }
+
+export function getRawFileJSONString(rawFileName: string, callBack: Callback<string>, component?: Object) {
+  getContext(component)
+    .getApplicationContext()
+    .resourceManager
+    .getRawFileContent(rawFileName)
+    .then((value) => {
+      let rawFile: Uint8Array = value
+      var textDecoder = new util.TextDecoder('utf-8', { ignoreBOM: true })
+      var jsonStr = textDecoder.decode(rawFile, { stream: false })
+      callBack(jsonStr)
+    })
+    .catch((error) => {
+      callBack(null)
+    })
+}

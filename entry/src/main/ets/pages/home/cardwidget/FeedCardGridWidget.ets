@@ -15,20 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { CardItemData, FloorData } from '../CardResponse'
 /**
  * https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-layout-development-create-grid-0000001504486057-V2
  * 用来将卡片的子组件进行排版的容器
  */
-import { Card, Floor } from '../HomeFeedBean'
 import { FeedCardWidget } from './FeedCardWidget'
 /**
  * 根据单个Floor的数据渲染一整个模块UI
  * （模块由3张或者4张小卡片拼接而成）
- * 小卡片的实现为：FeedCardNormalWidget
+ * 小卡片的实现为：FeedCardWidget
  */
 @Component
 export struct FeedCardGridWidget {
-  @Prop floor: Floor
+  @Prop floor: FloorData
 
   build() {
     Column() {
@@ -56,7 +56,7 @@ export struct FeedCardGridWidget {
       }
       if (this.floor && this.floor.card_show_list) {
         Grid() {
-          ForEach(this.floor.card_show_list, (card: Card, index) => {
+          ForEach(this.floor.card_show_list, (card: CardItemData, index) => {
             if (card.card_size === 2) { //纵置,占用两列
               GridItem() {
                 FeedCardWidget({ card: card })

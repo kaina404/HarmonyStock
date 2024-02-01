@@ -23,14 +23,14 @@
  * 高度 -> 屏幕高度的20% or 40%
  *
  */
-import { Card } from '../HomeFeedBean'
 import { CardItemListWidget } from './CardItemListWidget'
 import { CardContentBottomTypeWidget } from './CardContentBottomTypeWidget'
 import { CardType, CardViewModel } from './CardViewModel'
+import { CardItemData } from '../CardResponse'
 
 @Component
 export struct FeedCardWidget {
-  @Prop card: Card
+  @Prop card: CardItemData
   private viewModel: CardViewModel = new CardViewModel(this.card)
 
   build() {
@@ -68,7 +68,7 @@ export struct FeedCardWidget {
               left: { anchor: '__container__', align: HorizontalAlign.Start },
             })
             .padding({ left: 16, right: 16 })
-            .id("CardNormalItemListWidget")
+            .id("CardContentBottomTypeWidget")
         }
       }
     }

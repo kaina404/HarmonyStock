@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 import { openPage, Path_WebPage } from '../../router/RouterManager'
+import { CardResponse, FloorData } from './CardResponse'
 import { FeedCardGridWidget } from './cardwidget/FeedCardGridWidget'
-import { Floor, HomeFeedBean } from './HomeFeedBean'
 import { HomeHorizontalFeedWidget } from './HomeHorizontalFeedWidget'
 import { HomeTitleSearchWidget } from './HomeTitleSearchWidget'
 import { HomeBannerBean, HomeViewModel } from './HomeViewModel'
@@ -29,7 +29,7 @@ import { HomeBannerBean, HomeViewModel } from './HomeViewModel'
 @Component
 export struct HomeComponent {
   @State message: string = 'HomePage'
-  @State floorList: Floor[] = []
+  @State floorList: FloorData[] = []
   @State bannerBeanList: HomeBannerBean[] = []
   private viewModel = new HomeViewModel()
 
@@ -76,7 +76,7 @@ export struct HomeComponent {
 
       if (this.floorList[0] && this.floorList[0].floor_name && this.floorList[0].card_show_list) {
         List() {
-          ForEach(this.floorList, (itemFloor: Floor, index: number) => {
+          ForEach(this.floorList, (itemFloor: FloorData, index: number) => {
             if (index === 0) {
               HomeHorizontalFeedWidget({ floor: itemFloor })
                 .width('100%')
@@ -100,7 +100,7 @@ export struct HomeComponent {
     this.viewModel.requestHomeBannerConfig((responseList) => {
       this.bannerBeanList = responseList
     })
-    this.viewModel.requestFeedData((value: HomeFeedBean) => {
+    this.viewModel.requestFeedData((value: CardResponse) => {
       this.floorList = value.data.floor_list
     })
   }
