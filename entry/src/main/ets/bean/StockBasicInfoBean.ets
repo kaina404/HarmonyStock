@@ -1,3 +1,20 @@
+/*
+ * Copyright (c) 2024 Kaina404 Device Co., Ltd.
+ *
+ *  https://github.com/kaina404/
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 /**
  * {"code":"000002","date":20240116,"time":121111,"snap":["万  科Ａ",9.7100,9.6700,9.7000,9.5400,9.5500,
  * -0.1600,-1.65,33986076,327706400,1200,17410183,16575893,[9.5400,98700,9.5300,246700,9.5200,154500,9.5100,
