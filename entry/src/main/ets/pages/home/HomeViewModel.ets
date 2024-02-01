@@ -275,14 +275,24 @@ export class HomeViewModel {
             const parsedData: ApiResponse = JSON.parse(response.result as string);
             modData.httpResponse = parsedData
             if (parsedData && parsedData.data) {
-              if (modData.list === null || modData.list === undefined || Array.isArray(modData.list) && modData.list.length === 0) {
-                try {
-                  if (parsedData.data.header && Array.isArray(parsedData.data.header)) {
-                    modData.header = parsedData.data.header
-                  }
-                } catch (e) {
-                  Logger.error(e.message)
+              try {
+                //填充接口返回的header到mobData的header
+                if (parsedData.data.header && Array.isArray(parsedData.data.header)) {
+                  modData.header = parsedData.data.header
                 }
+              } catch (e) {
+                Logger.error(e.message)
+              }
+              try {
+                if (parsedData.data.list && Array.isArray(parsedData.data.list) && parsedData.data.list[0]) {
+                  const cardHttpBean: CardHttpBean = parsedData.data.list[0]
+                  modData.content = cardHttpBean.content
+                  modData.jump = cardHttpBean.jump
+                }
+              } catch (e) {
+                Logger.error(e.message)
+              }
+              if (modData.list === null || modData.list === undefined || Array.isArray(modData.list) && modData.list.length === 0) {
                 try {
                   const list = parsedData.data.list.map((item: CardHttpBean) => {
                     const modDataListItem: ModDataListItem = new ModDataListItem()
@@ -317,6 +327,9 @@ export class HomeViewModel {
                       tag.stock_name = stockInfo.snap.name
                     }
                   }
+                }
+                if (tag) {
+                  modData.tags = [[tag]]
                 }
               } catch (e) {
                 Logger.error(e.message)
