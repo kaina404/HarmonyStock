@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { defaultBlackColor, defaultColor, redColor } from '../../../common/Constants';
 import Logger from '../../../common/Logger';
 import { CardItemData, KeyValueData, ModDataBean } from '../CardResponse';
 
@@ -23,6 +24,12 @@ export class CardViewModel {
 
   constructor(card: CardItemData) {
     this.card = card
+  }
+
+  getColor(colorDesc: string): string {
+    if (colorDesc === "black") return defaultBlackColor
+    if (colorDesc === "red") return redColor
+    return defaultBlackColor
   }
 
   checkData(card: CardItemData) {

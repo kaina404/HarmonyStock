@@ -17,9 +17,11 @@
  */
 import { redColorRGB } from '../../../common/Constants'
 import { KeyValueData } from '../CardResponse'
+import { CardViewModel } from './CardViewModel'
 
 @Component
 export struct CardItemListWidget {
+  private viewModel: CardViewModel = new CardViewModel(null)
   @Prop list: KeyValueData[]
 
   build() {
@@ -74,9 +76,10 @@ export struct CardItemListWidget {
                       ListItem() {
                         if (dataDescItem.value) {
                           Text(dataDescItem.value)
+                            .fontColor(this.viewModel.getColor(dataDescItem.color))
                         }
                       }
-                      .width("50")
+                      .width("50%")
                       .height('100%')
                     })
                   }

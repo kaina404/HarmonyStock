@@ -21,6 +21,8 @@ export const redColorRGB = 'rgb(206,79,70)'
 
 export const defaultColor = '#fcfcfc'
 
+export const defaultBlackColor = '#000000'
+
 export const greenColor = '#228B22'
 
 import relationalStore from '@ohos.data.relationalStore';
