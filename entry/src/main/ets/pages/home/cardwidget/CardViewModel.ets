@@ -24,7 +24,7 @@ export class CardViewModel {
     }
     try {
       if (card.mod_data[0].list[0].tags[0][0].stock_code && card.mod_data[0].list[0].content) {
-        return CardType.BOTTOM_SHOW_STOCK
+        return CardType.CONTENT_FOR_TXT_AND_BOTTOM
       }
     } catch (e) {
       Logger.error(e.message)
@@ -51,7 +51,7 @@ export class CardViewModel {
 export enum CardType {
   UNKNOWN,
   List,
-  BOTTOM_SHOW_STOCK,
+  CONTENT_FOR_TXT_AND_BOTTOM,
 }
 
 export enum CardSize {

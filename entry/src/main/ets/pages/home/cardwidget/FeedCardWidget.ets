@@ -8,7 +8,7 @@
  */
 import { Card } from '../HomeFeedBean'
 import { CardItemListWidget } from './CardItemListWidget'
-import { CardStockTypeWidget } from './CardStockTypeWidget'
+import { CardContentBottomTypeWidget } from './CardContentBottomTypeWidget'
 import { CardType, CardViewModel } from './CardViewModel'
 
 @Component
@@ -42,8 +42,8 @@ export struct FeedCardWidget {
             })
             .padding({ left: 16, right: 16 })
             .id("CardNormalItemListWidget")
-        } else if (this.viewModel.getCardType(this.card) === CardType.BOTTOM_SHOW_STOCK) {
-          CardStockTypeWidget({ modData: this.viewModel.getModData(this.card) })
+        } else if (this.viewModel.getCardType(this.card) === CardType.CONTENT_FOR_TXT_AND_BOTTOM) {
+          CardContentBottomTypeWidget({ modData: this.viewModel.getModData(this.card) })
             .width('100%')
             .height('100%')
             .alignRules({
