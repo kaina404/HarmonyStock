@@ -1,4 +1,5 @@
-import { Card, ModDataListItem } from '../HomeFeedBean';
+import Logger from '../../../common/Logger';
+import { Card, ModData, ModDataListItem } from '../HomeFeedBean';
 
 export class CardViewModel {
   private card: Card = null
@@ -19,8 +20,21 @@ export class CardViewModel {
         return CardType.List
       }
     } catch (e) {
+      Logger.error(e.message)
+    }
+    try {
+      if (card.mod_data[0].list[0].tags[0][0].stock_code && card.mod_data[0].list[0].content) {
+        return CardType.BOTTOM_SHOW_STOCK
+      }
+    } catch (e) {
+      Logger.error(e.message)
     }
     return CardType.UNKNOWN
+  }
+
+  getModData(card: Card):ModData {
+    this.card = card
+    return this.card.mod_data[0]
   }
 
   getCardList(): ModDataListItem[] {
@@ -37,6 +51,7 @@ export class CardViewModel {
 export enum CardType {
   UNKNOWN,
   List,
+  BOTTOM_SHOW_STOCK,
 }
 
 export enum CardSize {

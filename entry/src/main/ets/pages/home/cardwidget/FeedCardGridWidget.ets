@@ -3,7 +3,7 @@
  * 用来将卡片的子组件进行排版的容器
  */
 import { Card, Floor } from '../HomeFeedBean'
-import { FeedCardNormalWidget } from './CardNormalListTypeWidget'
+import { FeedCardWidget } from './FeedCardWidget'
 /**
  * 根据单个Floor的数据渲染一整个模块UI
  * （模块由3张或者4张小卡片拼接而成）
@@ -42,7 +42,7 @@ export struct FeedCardGridWidget {
           ForEach(this.floor.card_show_list, (card: Card, index) => {
             if (card.card_size === 2) { //纵置,占用两列
               GridItem() {
-                FeedCardNormalWidget({ card: card })
+                FeedCardWidget({ card: card })
                   .width('100%')
                   .height('100%')
               }
@@ -52,7 +52,7 @@ export struct FeedCardGridWidget {
               .margin(5)
             } else { //纵置单列
               GridItem() {
-                FeedCardNormalWidget({ card: card })
+                FeedCardWidget({ card: card })
                   .width('100%')
                   .height('100%')
 

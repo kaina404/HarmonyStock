@@ -2,7 +2,7 @@ import { redColorRGB } from '../../../common/Constants'
 import { Card, DataDesc, ModDataListItem } from '../HomeFeedBean'
 
 @Component
-export struct CardNormalItemListWidget {
+export struct CardItemListWidget {
   @Prop list: ModDataListItem[]
 
   build() {

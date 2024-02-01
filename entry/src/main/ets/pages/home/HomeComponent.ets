@@ -18,10 +18,12 @@ export struct HomeComponent {
 
   build() {
     Column() {
+      //头部的搜索区域
       HomeTitleSearchWidget()
         .width('100%')
         .margin({ bottom: 20 })
       Grid() {
+        //水平方向的金刚图banner
         ForEach(this.bannerBeanList, (item: HomeBannerBean, index) => {
           GridItem() {
             Column({ space: 6 }) {
@@ -70,7 +72,7 @@ export struct HomeComponent {
           })
         }
         .width('100%')
-        .height('100%')
+        .height('80%')
       }
     }
     .backgroundColor($r('app.color.page_default_color'))

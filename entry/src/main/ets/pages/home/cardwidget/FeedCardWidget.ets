@@ -6,12 +6,13 @@
  * 高度 -> 屏幕高度的20% or 40%
  *
  */
-import { Card, Floor } from '../HomeFeedBean'
-import { CardNormalItemListWidget as CardNormalListTypeWidget } from './CardNormalItemList'
+import { Card } from '../HomeFeedBean'
+import { CardItemListWidget } from './CardItemListWidget'
+import { CardStockTypeWidget } from './CardStockTypeWidget'
 import { CardType, CardViewModel } from './CardViewModel'
 
 @Component
-export struct FeedCardNormalWidget {
+export struct FeedCardWidget {
   @Prop card: Card
   private viewModel: CardViewModel = new CardViewModel(this.card)
 
@@ -26,12 +27,23 @@ export struct FeedCardNormalWidget {
             left: { anchor: '__container__', align: HorizontalAlign.Start },
           })
           .fontSize(14)
-          .fontColor($r('app.color.default_txt_color'))
+          .fontWeight(FontWeight.Bold)
+          .fontColor($r('app.color.black_text'))
           .padding({ top: 10 })
           .margin({ left: 16, right: 16 })
           .id("card_card_title_value")
         if (this.viewModel.getCardType(this.card) === CardType.List) {
-          CardNormalListTypeWidget({ list: this.viewModel.getCardList() })
+          CardItemListWidget({ list: this.viewModel.getCardList() })
+            .width('100%')
+            .height('100%')
+            .alignRules({
+              top: { anchor: 'card_card_title_value', align: VerticalAlign.Bottom },
+              left: { anchor: '__container__', align: HorizontalAlign.Start },
+            })
+            .padding({ left: 16, right: 16 })
+            .id("CardNormalItemListWidget")
+        } else if (this.viewModel.getCardType(this.card) === CardType.BOTTOM_SHOW_STOCK) {
+          CardStockTypeWidget({ modData: this.viewModel.getModData(this.card) })
             .width('100%')
             .height('100%')
             .alignRules({
