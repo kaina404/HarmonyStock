@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 import { redColorRGB } from '../../../common/Constants'
-import { KeyValueData } from '../CardResponse'
+import { ColorTxtBean, KeyValueData } from '../CardResponse'
 import { CardViewModel } from './CardViewModel'
 
 @Component
@@ -70,11 +70,11 @@ export struct CardItemListWidget {
                   .justifyContent(FlexAlign.SpaceBetween)
                   .width('100%')
                 }
-                if (item.data_desc) {
+                if (Array.isArray(item.data_desc)) {
                   List() {
-                    ForEach(item.data_desc, (dataDescItem: KeyValueData, index) => {
+                    ForEach(item.data_desc, (dataDescItem, index) => {
                       ListItem() {
-                        if (dataDescItem.value) {
+                        if (dataDescItem && dataDescItem.value) {
                           Text(dataDescItem.value)
                             .fontColor(this.viewModel.getColor(dataDescItem.color))
                         }

@@ -40,14 +40,14 @@ export class CardViewModel {
   getCardType(card: CardItemData): CardType {
     this.card = card
     try {
-      if (card.mod_data[0].content && card.mod_data[0].tags) {
+      if (card && card.mod_data && card.mod_data[0].content && card.mod_data[0].tags) {
         return CardType.CONTENT_FOR_TXT_AND_BOTTOM
       }
     } catch (e) {
       Logger.error(e.message)
     }
     try {
-      if (card.mod_data[0].list.length > 0) {
+      if (card && card.mod_data && card.mod_data[0].list.length > 0) {
         return CardType.List
       }
     } catch (e) {
@@ -63,10 +63,9 @@ export class CardViewModel {
 
   getCardList(): KeyValueData[] {
     try {
-      if (this.card.mod_data[0].list.length > 0) {
-        return this.card.mod_data[0].list
-      }
+      return this.card.mod_data[0].list
     } catch (e) {
+      Logger.error(e.message)
     }
     return []
   }

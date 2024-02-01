@@ -46,22 +46,26 @@ export class HomeViewModel {
   requestFeedData(callBack: Callback<CardResponse>) {
     //加载首页的信息流数据，从HTTP
     // const url = "https://eq.10jqka.com.cn/eqadmin/tmp/indexFeed/iphone2.txt"
-    // const url = "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/old_user?platform=iphone&version=I037.08.488&is_reflow=0"
-    // sendHttpRequest(url).then((data => {
-    //   const jsonData = JSON.parse(data.result as string)
-    //   this.parseJSONData(jsonData, callBack)
-    // }))
+    const url = "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/old_user?platform=iphone&version=I037.08.488&is_reflow=0"
+    sendHttpRequest(url).then((data => {
+      // const jsonData = JSON.parse(data.result as string)
+      this.parseJSONString((data.result as string), callBack)
+    }))
     //加载首页的信息流，从本地json文件
-    getRawFileJSONString("home_config.json", (((jsonDataString: string) => {
-      let jsonResult: CardResponse = JSON.parse(jsonDataString)
-      // 过滤 floor_list 中 floor_name 或 version 为 null 的数据
-      const filteredFloorList = jsonResult.data.floor_list.filter((floorData: FloorData) => {
-        return floorData.floor_name !== null && floorData.version !== null;
-      });
-      jsonResult.data.floor_list = filteredFloorList
-      callBack(jsonResult)
-      this.processAsyncRequests(callBack, jsonResult)
-    })), this)
+    // getRawFileJSONString("home_config.json", (((jsonDataString: string) => {
+    //   this.parseJSONString(jsonDataString, callBack)
+    // })), this)
+  }
+
+  parseJSONString(jsonDataString, callBack) {
+    let jsonResult: CardResponse = JSON.parse(jsonDataString)
+    // 过滤 floor_list 中 floor_name 或 version 为 null 的数据
+    const filteredFloorList = jsonResult.data.floor_list.filter((floorData: FloorData) => {
+      return floorData.floor_name !== null && floorData.version !== null;
+    });
+    jsonResult.data.floor_list = filteredFloorList
+    callBack(jsonResult)
+    this.processAsyncRequests(callBack, jsonResult)
   }
 
   /**
