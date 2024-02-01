@@ -265,7 +265,7 @@ export class HomeViewModel {
     for (const floor of floorListFor) {
       for (const tmpCard of floor.card_show_list) {
         const card: Card = tmpCard
-        if(card.card_title.value === "圈子") {
+        if (card.card_id === 1945) {
           console.log("card")
         }
         for (const tmpModData of card.mod_data) {
@@ -274,18 +274,28 @@ export class HomeViewModel {
             const response = await sendHttpRequest(modData.url_v2)
             const parsedData: ApiResponse = JSON.parse(response.result as string);
             modData.httpResponse = parsedData
-            if (parsedData) {
+            if (parsedData && parsedData.data) {
               if (modData.list === null || modData.list === undefined || Array.isArray(modData.list) && modData.list.length === 0) {
-                modData.header = parsedData.data.header
-                const list = parsedData.data.list.map((item: CardHttpBean) => {
-                  const modDataListItem: ModDataListItem = new ModDataListItem()
-                  modDataListItem.content = item.content
-                  modDataListItem.jump = item.jump
-                  modDataListItem.tags = item.tags
-                  return modDataListItem
-                })
-                if (list) {
-                  modData.list = list
+                try {
+                  if (parsedData.data.header && Array.isArray(parsedData.data.header)) {
+                    modData.header = parsedData.data.header
+                  }
+                } catch (e) {
+                  Logger.error(e.message)
+                }
+                try {
+                  const list = parsedData.data.list.map((item: CardHttpBean) => {
+                    const modDataListItem: ModDataListItem = new ModDataListItem()
+                    modDataListItem.content = item.content
+                    modDataListItem.jump = item.jump
+                    modDataListItem.tags = item.tags
+                    return modDataListItem
+                  })
+                  if (list) {
+                    modData.list = list
+                  }
+                } catch (e) {
+                  Logger.error(e.message)
                 }
               }
               try {
@@ -309,6 +319,7 @@ export class HomeViewModel {
                   }
                 }
               } catch (e) {
+                Logger.error(e.message)
               }
             }
           }
