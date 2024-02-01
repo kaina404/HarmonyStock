@@ -54,7 +54,7 @@ export struct FeedCardGridWidget {
         .height('8%')
         .width('100%')
       }
-      if (this.floor && this.floor.card_show_list) {
+      if (this.floor && Array.isArray(this.floor.card_show_list)) {
         Grid() {
           ForEach(this.floor.card_show_list, (card: CardItemData, index) => {
             if (card.card_size === 2) { //纵置,占用两列

@@ -26,7 +26,7 @@ export struct CardItemListWidget {
 
   build() {
     Column() {
-      if (this.list) {
+      if (Array.isArray(this.list)) {
         List() {
           ForEach(this.list, (item: KeyValueData, index) => {
             ListItem() {

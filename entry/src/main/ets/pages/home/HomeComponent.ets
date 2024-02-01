@@ -41,31 +41,33 @@ export struct HomeComponent {
         .margin({ bottom: 20 })
       Grid() {
         //水平方向的金刚图banner
-        ForEach(this.bannerBeanList, (item: HomeBannerBean, index) => {
-          GridItem() {
-            Column({ space: 6 }) {
-              Image(item.gray_imgurl)
-                .width(45)
-                .height(45)
-              Text(item.title)
-                .fontSize(12)
-            }
-            .onClick((event) => {
-              if (item.newjumpurl) {
-                if (item.newjumpurl.startsWith("http")) {
-                  openPage({
-                    url: Path_WebPage,
-                    params: {
-                      "url": item.newjumpurl
-                    }
-                  })
-                } else {
-
-                }
+        if (Array.isArray(this.bannerBeanList)) {
+          ForEach(this.bannerBeanList, (item: HomeBannerBean, index) => {
+            GridItem() {
+              Column({ space: 6 }) {
+                Image(item.gray_imgurl)
+                  .width(45)
+                  .height(45)
+                Text(item.title)
+                  .fontSize(12)
               }
-            })
-          }
-        })
+              .onClick((event) => {
+                if (item.newjumpurl) {
+                  if (item.newjumpurl.startsWith("http")) {
+                    openPage({
+                      url: Path_WebPage,
+                      params: {
+                        "url": item.newjumpurl
+                      }
+                    })
+                  } else {
+
+                  }
+                }
+              })
+            }
+          })
+        }
       }
       .width('100%')
       .height('10%')
@@ -75,21 +77,23 @@ export struct HomeComponent {
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
 
       if (this.floorList[0] && this.floorList[0].floor_name && this.floorList[0].card_show_list) {
-        List() {
-          ForEach(this.floorList, (itemFloor: FloorData, index: number) => {
-            if (index === 0) {
-              HomeHorizontalFeedWidget({ floor: itemFloor })
-                .width('100%')
-                .height('20%')
-            } else {
-              FeedCardGridWidget({ floor: itemFloor })
-                .width('100%')
-                .height('40%')
-            }
-          })
+        if (this.floorList) {
+          List() {
+            ForEach(this.floorList, (itemFloor: FloorData, index: number) => {
+              if (index === 0) {
+                HomeHorizontalFeedWidget({ floor: itemFloor })
+                  .width('100%')
+                  .height('20%')
+              } else {
+                FeedCardGridWidget({ floor: itemFloor })
+                  .width('100%')
+                  .height('40%')
+              }
+            })
+          }
+          .width('100%')
+          .height('80%')
         }
-        .width('100%')
-        .height('80%')
       }
     }
     .backgroundColor($r('app.color.page_default_color'))
