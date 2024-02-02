@@ -66,7 +66,16 @@ export struct CardContentBottomTypeWidget {
         } else if (this.modData && this.viewModel.getShowTags(this.modData)) {
           const keyValue = this.viewModel.getShowTags(this.modData)
           if (keyValue.jump && keyValue.jump.android.startsWith("http")) {
-            openWebViewPage(keyValue.jump.android)
+            const url = keyValue.jump.android
+            if (url.startsWith("http")) {
+              openWebViewPage(url)
+            } else {
+              const match = url.match(/url=([^&]+)/)
+              if (match && match.length > 1) {
+                const url = match[1];
+                openWebViewPage(url)
+              }
+            }
           }
         }
       } catch (e) {
