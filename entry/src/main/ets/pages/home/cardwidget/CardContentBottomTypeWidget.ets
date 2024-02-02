@@ -45,7 +45,6 @@ export struct CardContentBottomTypeWidget {
             .fontColor(defaultBlackColor)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
         }
-
         if (this.viewModel.hasTagsContentValue(this.modData)) {
           Text(this.viewModel.hasTagsContentValue(this.modData))
             .maxLines(2)
@@ -56,6 +55,7 @@ export struct CardContentBottomTypeWidget {
 
       }
     }
+    .margin({top: 5})
     .alignItems(HorizontalAlign.Start)
     .width('100%')
     .height('100%')
