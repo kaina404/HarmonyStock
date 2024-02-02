@@ -52,6 +52,7 @@ export struct CardContentBottomTypeWidget {
             .maxLines(2)
             .fontSize(14)
             .fontColor(grayColor)
+            .margin({ top: 10 })
             .textOverflow({ overflow: TextOverflow.Ellipsis })
         }
 
