@@ -27,6 +27,7 @@ import { CardItemListWidget } from './CardItemListWidget'
 import { CardContentBottomTypeWidget } from './CardContentBottomTypeWidget'
 import { CardType, CardViewModel } from './CardViewModel'
 import { CardItemData } from '../CardResponse'
+import { CardHotPlateWidget } from './CardHotPlateWidget'
 
 @Component
 export struct FeedCardWidget {
@@ -49,7 +50,17 @@ export struct FeedCardWidget {
           .padding({ top: 10 })
           .margin({ left: 16, right: 16 })
           .id("card_card_title_value")
-        if (this.viewModel.getCardType(this.card) === CardType.List) {
+        if (this.card.render_key === "hotPlate") {
+          CardHotPlateWidget({ cardUrl: this.card.card_url.android, dataList: this.card.mod_data[0].list })
+            .width('100%')
+            .height('100%')
+            .alignRules({
+              top: { anchor: 'card_card_title_value', align: VerticalAlign.Bottom },
+              left: { anchor: '__container__', align: HorizontalAlign.Start },
+            })
+            .padding({ left: 16, right: 16 })
+            .id("CardHotPlateWidget")
+        } else if (this.viewModel.getCardType(this.card) === CardType.List) {
           CardItemListWidget({ list: this.viewModel.getCardList(), card: this.card })
             .width('100%')
             .height('100%')
