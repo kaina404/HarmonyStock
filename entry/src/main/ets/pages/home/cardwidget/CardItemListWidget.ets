@@ -136,6 +136,6 @@ function getHeight(data: KeyValueData[]): Length {
   if (data.length === 1) {
     return '100%'
   }
-  var height = 100 / data.length * 0.8
+  var height = 100 / data.length * 0.8 + 8
   return height.toString() + '%'
 }
