@@ -131,27 +131,49 @@ export class HomeViewModel {
     let tags: KeyValueData[] = []
     let index = 0
     for (const item of list) {
-      if (item && item.data) {
-        if (item.data.type === "stock" && item.data.market && item.data.stock_code) {
+      if (item) {
+        if (item.data) {
+          if (item.data.type === "stock" && item.data.market && item.data.stock_code) {
+            //stock类型的,需要请求行情数据
+            const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(item.data.stock_code)
+            if (stockResponse) {
+              const stockInfo: StockBasicInfoBean = stockResponse
+              if (stockInfo.snap && stockInfo.snap.last && stockInfo.snap.prev_close && stockInfo.snap.prev_close > 0) {
+                const value = ((stockInfo.snap.last - stockInfo.snap.prev_close) / stockInfo.snap.prev_close * 100).toFixed(2) + "%"
+                if (!value.startsWith("-")) {
+                  item.data.value = "+" + value
+                  item.data.color = redColor
+                } else {
+                  item.data.value = value
+                  item.data.color = greenColor
+                }
+              }
+              item.data.stock_name = stockInfo.snap.name
+            }
+          }
+          tags[index] = item.data
+          index += 1
+        } else if (item.type === "stock" && item.market && item.stock_code) {
           //stock类型的,需要请求行情数据
-          const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(item.data.stock_code)
+          const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(item.stock_code)
           if (stockResponse) {
             const stockInfo: StockBasicInfoBean = stockResponse
             if (stockInfo.snap && stockInfo.snap.last && stockInfo.snap.prev_close && stockInfo.snap.prev_close > 0) {
               const value = ((stockInfo.snap.last - stockInfo.snap.prev_close) / stockInfo.snap.prev_close * 100).toFixed(2) + "%"
               if (!value.startsWith("-")) {
-                item.data.value = "+" + value
-                item.data.color = redColor
+                item.value = "+" + value
+                item.color = redColor
               } else {
-                item.data.value = value
-                item.data.color = greenColor
+                item.value = value
+                item.color = greenColor
               }
             }
-            item.data.stock_name = stockInfo.snap.name
+            item.stock_name = stockInfo.snap.name
           }
+          tags[index] = item.data
+          index += 1
         }
-        tags[index] = item.data
-        index += 1
+
       }
     }
     if (index > 0) {

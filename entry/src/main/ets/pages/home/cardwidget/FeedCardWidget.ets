@@ -38,7 +38,7 @@ export struct FeedCardWidget {
     RelativeContainer() {
       if (this.viewModel.checkData(this.card)) {
         Text(this.card.card_title.value)
-          .maxLines(2)
+          .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
           .alignRules({
             top: { anchor: '__container__', align: VerticalAlign.Top },
@@ -49,21 +49,22 @@ export struct FeedCardWidget {
           .fontColor($r('app.color.black_text'))
           .padding({ top: 10 })
           .margin({ left: 16, right: 16 })
+          .height(30)
           .id("card_card_title_value")
         if (this.card.render_key === "hotPlate") {
           CardHotPlateWidget({ cardUrl: this.card.card_url.android, dataList: this.card.mod_data[0].list })
             .width('100%')
-            .height('100%')
+            .height('85%')
             .alignRules({
               top: { anchor: 'card_card_title_value', align: VerticalAlign.Bottom },
               left: { anchor: '__container__', align: HorizontalAlign.Start },
             })
-            .padding({ left: 16, right: 16 })
+            .padding({ left: 16, right: 16, top: 10, bottom: 10 })
             .id("CardHotPlateWidget")
         } else if (this.viewModel.getCardType(this.card) === CardType.List) {
           CardItemListWidget({ list: this.viewModel.getCardList(), card: this.card })
             .width('100%')
-            .height('100%')
+            .height('65%')
             .alignRules({
               top: { anchor: 'card_card_title_value', align: VerticalAlign.Bottom },
               left: { anchor: '__container__', align: HorizontalAlign.Start },
@@ -73,7 +74,7 @@ export struct FeedCardWidget {
         } else if (this.viewModel.getCardType(this.card) === CardType.CONTENT_FOR_TXT_AND_BOTTOM) {
           CardContentBottomTypeWidget({ modData: this.viewModel.getModData(this.card) })
             .width('100%')
-            .height('100%')
+            .height('65%')
             .alignRules({
               top: { anchor: 'card_card_title_value', align: VerticalAlign.Bottom },
               left: { anchor: '__container__', align: HorizontalAlign.Start },

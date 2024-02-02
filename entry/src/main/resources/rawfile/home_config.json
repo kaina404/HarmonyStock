@@ -350,44 +350,44 @@
                   {
                     "market":"48",
                     "fund":null,
-                    "name":"中字头股票",
+                    "name":"贵州茅台",
                     "type":"stock",
-                    "stock_code":"885741"
+                    "stock_code":"600519"
                   },
                   {
                     "market":"48",
                     "fund":null,
-                    "name":"上海国企改革",
+                    "name":"泸州老窖",
                     "type":"stock",
-                    "stock_code":"885493"
+                    "stock_code":"000568"
                   },
                   {
                     "market":"48",
                     "fund":null,
-                    "name":"短剧游戏",
+                    "name":"中国平安",
                     "type":"stock",
-                    "stock_code":"886060"
+                    "stock_code":"601318"
                   },
                   {
                     "market":"48",
                     "fund":null,
-                    "name":"共封装光学（CPO）",
+                    "name":"科大讯飞",
                     "type":"stock",
-                    "stock_code":"886033"
+                    "stock_code":"002230"
                   },
                   {
                     "market":"48",
                     "fund":null,
-                    "name":"乳业",
+                    "name":"中信金属",
                     "type":"stock",
-                    "stock_code":"885462"
+                    "stock_code":"601061"
                   },
                   {
                     "market":"48",
                     "fund":null,
-                    "name":"猪肉",
+                    "name":"三六零",
                     "type":"stock",
-                    "stock_code":"885573"
+                    "stock_code":"601360"
                   }
                 ]
               }
