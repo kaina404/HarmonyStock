@@ -50,7 +50,7 @@ export struct FeedCardWidget {
           .margin({ left: 16, right: 16 })
           .id("card_card_title_value")
         if (this.viewModel.getCardType(this.card) === CardType.List) {
-          CardItemListWidget({ list: this.viewModel.getCardList() })
+          CardItemListWidget({ list: this.viewModel.getCardList(), card: this.card })
             .width('100%')
             .height('100%')
             .alignRules({

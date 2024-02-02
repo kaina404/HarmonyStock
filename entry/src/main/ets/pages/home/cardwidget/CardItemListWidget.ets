@@ -16,13 +16,15 @@
  * limitations under the License.
  */
 import { defaultBlackColor, redColorRGB } from '../../../common/Constants'
-import { ColorTxtBean, KeyValueData } from '../CardResponse'
+import { openWebViewPage } from '../../../router/RouterManager'
+import { CardItemData, ColorTxtBean, KeyValueData } from '../CardResponse'
 import { CardViewModel } from './CardViewModel'
 
 @Component
 export struct CardItemListWidget {
   private viewModel: CardViewModel = new CardViewModel(null)
   @Prop list: KeyValueData[]
+  @Prop card: CardItemData
 
   build() {
     Column() {
@@ -111,6 +113,20 @@ export struct CardItemListWidget {
         .height('100%')
       }
     }
+    .onClick(() => {
+      if (this.card && this.card.card_url) {
+        const url = this.card.card_url.android
+        if (url.startsWith("http")) {
+          openWebViewPage(url)
+        } else {
+          const match = url.match(/url=([^&]+)/)
+          if (match && match.length > 1) {
+            const url = match[1];
+            openWebViewPage(url)
+          }
+        }
+      }
+    })
     .width('100%')
     .height('100%')
   }
