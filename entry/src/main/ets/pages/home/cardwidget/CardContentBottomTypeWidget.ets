@@ -15,7 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { defaultBlackColor, grayColor } from '../../../common/Constants'
 import { ModDataBean } from '../CardResponse'
+import { CardViewModel } from './CardViewModel'
 
 /**
  * @ProjectName : HarmonyStock
@@ -31,16 +33,30 @@ import { ModDataBean } from '../CardResponse'
 @Component
 export struct CardContentBottomTypeWidget {
   @Prop modData: ModDataBean
+  private viewModel = new CardViewModel(null)
 
   build() {
     Column() {
       if (this.modData) {
         if (typeof this.modData.content === 'string') {
           Text(this.modData.content)
+            .maxLines(2)
+            .fontSize(16)
+            .fontColor(defaultBlackColor)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+        }
+
+        if (this.viewModel.hasTagsContentValue(this.modData)) {
+          Text(this.viewModel.hasTagsContentValue(this.modData))
+            .maxLines(2)
+            .fontSize(14)
+            .fontColor(grayColor)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
         }
 
       }
     }
+    .alignItems(HorizontalAlign.Start)
     .width('100%')
     .height('100%')
   }

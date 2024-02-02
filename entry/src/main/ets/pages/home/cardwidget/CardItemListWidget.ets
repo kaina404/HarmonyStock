@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { redColorRGB } from '../../../common/Constants'
+import { defaultBlackColor, redColorRGB } from '../../../common/Constants'
 import { ColorTxtBean, KeyValueData } from '../CardResponse'
 import { CardViewModel } from './CardViewModel'
 
@@ -38,11 +38,15 @@ export struct CardItemListWidget {
                   Row() {
                     Text((index + 1).toString())
                       .fontSize(13)
+                      .maxLines(2)
+                      .textOverflow({ overflow: TextOverflow.Ellipsis })
                       .margin({ right: 7 })
                       .fontColor(redColorRGB)
 
                     Text(item.title)
                       .maxLines(2)
+                      .fontColor(defaultBlackColor)
+                      .textOverflow({ overflow: TextOverflow.Ellipsis })
                       .fontSize(15)
                       .textOverflow({ overflow: TextOverflow.Ellipsis })
                   }
@@ -53,18 +57,26 @@ export struct CardItemListWidget {
                     if (item.data.stock_name) {
                       Text(item.data.stock_name)
                         .fontWeight(FontWeight.Medium)
+                        .maxLines(2)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                     } else if (item.data.stock_code) {
                       Text(item.data.stock_code)
                         .fontWeight(FontWeight.Medium)
+                        .maxLines(2)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                     }
                     if (item.value) {
                       Text(item.value)
                         .fontWeight(FontWeight.Medium)
                         .fontColor(item.color)
+                        .maxLines(2)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                     } else if (item.data.value) {
                       Text(item.data.value)
                         .fontWeight(FontWeight.Medium)
                         .fontColor(item.data.color)
+                        .maxLines(2)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                     }
                   }
                   .justifyContent(FlexAlign.SpaceBetween)

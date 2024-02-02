@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 export const redColor = '#e2233e'
+export const grayColor = '#808080'
 
 export const redColorRGB = 'rgb(206,79,70)'
 

@@ -105,6 +105,21 @@ export class ModDataBean {
   tags: KeyValueData[][]
   list: KeyValueData[]
   prefix: KeyValueData
+
+  hasTags(): KeyValueData[] | null {
+    try {
+      return this.tags[0]
+    } catch (e) {
+    }
+    return null;
+  }
+
+  getTags(): KeyValueData[] {
+    try {
+      return this.tags[0].filter((item) => item.type === "text")
+    } catch (e) {
+    }
+  }
 }
 
 export class ImageDataBean {

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { defaultBlackColor, defaultColor, redColor } from '../../../common/Constants';
+import { defaultBlackColor, defaultColor, grayColor, redColor } from '../../../common/Constants';
 import Logger from '../../../common/Logger';
 import { CardItemData, KeyValueData, ModDataBean } from '../CardResponse';
 
@@ -26,9 +26,18 @@ export class CardViewModel {
     this.card = card
   }
 
+  hasTagsContentValue(modData: ModDataBean) {
+    try {
+      return modData.tags[0].filter((item) => item.type !== 'flag')[0].value
+    } catch (e) {
+      Logger.error(e.message)
+    }
+  }
+
   getColor(colorDesc: string): string {
     if (colorDesc === "black") return defaultBlackColor
     if (colorDesc === "red") return redColor
+    if (colorDesc === "gray") return grayColor
     return defaultBlackColor
   }
 

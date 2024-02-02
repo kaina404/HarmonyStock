@@ -47,14 +47,14 @@ export class HomeViewModel {
     //加载首页的信息流数据，从HTTP
     // const url = "https://eq.10jqka.com.cn/eqadmin/tmp/indexFeed/iphone2.txt"
     const url = "https://eq.10jqka.com.cn/eq/open/api/homepage_v2/v3/old_user?platform=iphone&version=I037.08.488&is_reflow=0"
-    sendHttpRequest(url).then((data => {
-      // const jsonData = JSON.parse(data.result as string)
-      this.parseJSONString((data.result as string), callBack)
-    }))
+    // sendHttpRequest(url).then((data => {
+    //   // const jsonData = JSON.parse(data.result as string)
+    //   this.parseJSONString((data.result as string), callBack)
+    // }))
     //加载首页的信息流，从本地json文件
-    // getRawFileJSONString("home_config.json", (((jsonDataString: string) => {
-    //   this.parseJSONString(jsonDataString, callBack)
-    // })), this)
+    getRawFileJSONString("home_config.json", (((jsonDataString: string) => {
+      this.parseJSONString(jsonDataString, callBack)
+    })), this)
   }
 
   parseJSONString(jsonDataString, callBack) {
@@ -95,6 +95,7 @@ export class HomeViewModel {
                   && Array.isArray(card.mod_data[0].tags[0])) {
                   const tags: KeyValueData[] = card.mod_data[0].tags[0]
                   const newTags = await this.requestStockDetailByTags(tags)
+                  // const filterTags = newTags.filter((item) => item.type !== 'flag')
                   if (newTags) {
                     modData.tags = [newTags]
                   }
@@ -105,12 +106,12 @@ export class HomeViewModel {
             }
           } else {
             try {
-              if (Array.isArray(modData.tags) && Array.isArray(modData.tags[0])) {
+              if (modData.tags && Array.isArray(modData.tags) && Array.isArray(modData.tags[0])) {
                 const newTags = await this.requestStockDetailByTags(modData.tags[0])
                 if (newTags) {
                   modData.tags = [newTags]
                 }
-              } else if (Array.isArray(modData.list)) {
+              } else if (modData.list && Array.isArray(modData.list)) {
                 const newTags = await this.requestStockDetailByList(modData.list)
                 if (newTags) {
                   modData.tags = [newTags]
@@ -130,7 +131,7 @@ export class HomeViewModel {
     let tags: KeyValueData[] = []
     let index = 0
     for (const item of list) {
-      if (item) {
+      if (item && item.data) {
         if (item.data.type === "stock" && item.data.market && item.data.stock_code) {
           //stock类型的,需要请求行情数据
           const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(item.data.stock_code)
@@ -153,33 +154,39 @@ export class HomeViewModel {
         index += 1
       }
     }
-    return tags
+    if (index > 0) {
+      return tags
+    }
   }
 
   async requestStockDetailByTags(tags: KeyValueData[]) {
-    for (const tag of tags) {
-      if (tag) {
-        if (tag.type === "stock" && tag.market && tag.stock_code) {
-          //stock类型的,需要请求行情数据
-          const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(tag.stock_code)
-          if (stockResponse) {
-            const stockInfo: StockBasicInfoBean = stockResponse
-            if (stockInfo.snap && stockInfo.snap.last && stockInfo.snap.prev_close && stockInfo.snap.prev_close > 0) {
-              const value = ((stockInfo.snap.last - stockInfo.snap.prev_close) / stockInfo.snap.prev_close * 100).toFixed(2) + "%"
-              if (!value.startsWith("-")) {
-                tag.value = "+" + value
-                tag.color = redColor
-              } else {
-                tag.value = value
-                tag.color = greenColor
+    try {
+      for (const tag of tags) {
+        if (tag) {
+          if (tag.type === "stock" && tag.market && tag.stock_code) {
+            //stock类型的,需要请求行情数据
+            const stockResponse = await new RequestStockBasicInfoApi().asyncRequestData(tag.stock_code)
+            if (stockResponse) {
+              const stockInfo: StockBasicInfoBean = stockResponse
+              if (stockInfo.snap && stockInfo.snap.last && stockInfo.snap.prev_close && stockInfo.snap.prev_close > 0) {
+                const value = ((stockInfo.snap.last - stockInfo.snap.prev_close) / stockInfo.snap.prev_close * 100).toFixed(2) + "%"
+                if (!value.startsWith("-")) {
+                  tag.value = "+" + value
+                  tag.color = redColor
+                } else {
+                  tag.value = value
+                  tag.color = greenColor
+                }
               }
+              tag.stock_name = stockInfo.snap.name
             }
-            tag.stock_name = stockInfo.snap.name
           }
         }
       }
+      return tags
+    } catch (e) {
+      Logger.error(e.message)
     }
-    return tags
   }
 
   requestHomeBannerConfig(callBack: Callback<HomeBannerBean[]>) {
