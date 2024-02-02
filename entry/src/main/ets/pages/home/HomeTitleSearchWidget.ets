@@ -118,7 +118,7 @@ export struct HomeTitleSearchWidget {
         })
         .id("--home_title_email--")
     }
-    .height(50)
+    .height('100%')
     .backgroundColor($r('app.color.main_color'))
     .width('100%')
   }

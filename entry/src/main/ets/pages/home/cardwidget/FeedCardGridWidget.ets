@@ -51,7 +51,7 @@ export struct FeedCardGridWidget {
         }
         .padding({ top: 10 })
         .alignItems(VerticalAlign.Center)
-        .height('8%')
+        .height('10%')
         .width('100%')
       }
       if (this.floor && Array.isArray(this.floor.card_show_list)) {
@@ -79,7 +79,7 @@ export struct FeedCardGridWidget {
             }
           })
         }
-        .height('92%')
+        .height('90%')
         .rowsTemplate('1fr 1fr')
       }
     }

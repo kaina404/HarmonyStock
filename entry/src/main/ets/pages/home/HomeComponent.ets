@@ -38,6 +38,7 @@ export struct HomeComponent {
       //头部的搜索区域
       HomeTitleSearchWidget()
         .width('100%')
+        .height(50)
         .margin({ bottom: 20 })
       Grid() {
         //水平方向的金刚图banner
