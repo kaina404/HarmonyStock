@@ -40,7 +40,7 @@ export struct CardItemListWidget {
                       .fontSize(13)
                       .maxLines(2)
                       .textOverflow({ overflow: TextOverflow.Ellipsis })
-                      .margin({ right: 7 })
+                      .margin({ right: 7, top: 3 })
                       .fontColor(redColorRGB)
 
                     Text(item.title)
