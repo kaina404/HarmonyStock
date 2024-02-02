@@ -34,6 +34,14 @@ export class CardViewModel {
     }
   }
 
+  getShowTags(modData: ModDataBean) {
+    try {
+      return modData.tags[0].filter((item) => item.type !== 'flag')[0]
+    } catch (e) {
+      Logger.error(e.message)
+    }
+  }
+
   getColor(colorDesc: string): string {
     if (colorDesc === "black") return defaultBlackColor
     if (colorDesc === "red") return redColor

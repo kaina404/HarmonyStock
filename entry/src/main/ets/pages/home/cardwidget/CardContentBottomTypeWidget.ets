@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 import { defaultBlackColor, grayColor } from '../../../common/Constants'
+import Logger from '../../../common/Logger'
+import { openPage, openWebViewPage } from '../../../router/RouterManager'
 import { ModDataBean } from '../CardResponse'
 import { CardViewModel } from './CardViewModel'
 
@@ -55,7 +57,23 @@ export struct CardContentBottomTypeWidget {
 
       }
     }
-    .margin({top: 5})
+    .onClick(() => {
+      try {
+        if (this.modData && this.modData.jump) {
+          if (this.modData.jump.android.startsWith("http")) {
+            openWebViewPage(this.modData.jump.android)
+          }
+        } else if (this.modData && this.viewModel.getShowTags(this.modData)) {
+          const keyValue = this.viewModel.getShowTags(this.modData)
+          if (keyValue.jump && keyValue.jump.android.startsWith("http")) {
+            openWebViewPage(keyValue.jump.android)
+          }
+        }
+      } catch (e) {
+        Logger.error(e.message)
+      }
+    })
+    .margin({ top: 5 })
     .alignItems(HorizontalAlign.Start)
     .width('100%')
     .height('100%')
