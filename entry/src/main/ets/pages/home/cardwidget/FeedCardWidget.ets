@@ -59,7 +59,7 @@ export struct FeedCardWidget {
               top: { anchor: 'card_card_title_value', align: VerticalAlign.Bottom },
               left: { anchor: '__container__', align: HorizontalAlign.Start },
             })
-            .padding({ left: 16, right: 16, top: 10, bottom: 10 })
+            .padding({ left: 16, right: 16, top: 6, bottom: 10 })
             .id("CardHotPlateWidget")
         } else if (this.viewModel.getCardType(this.card) === CardType.List) {
           CardItemListWidget({ list: this.viewModel.getCardList(), card: this.card })
@@ -79,7 +79,7 @@ export struct FeedCardWidget {
               top: { anchor: 'card_card_title_value', align: VerticalAlign.Bottom },
               left: { anchor: '__container__', align: HorizontalAlign.Start },
             })
-            .padding({ left: 16, right: 16 })
+            .padding({ left: 16, right: 16, bottom: 10 })
             .id("CardContentBottomTypeWidget")
         }
       }

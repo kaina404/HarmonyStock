@@ -55,6 +55,7 @@ export struct CardHotPlateWidget {
               .backgroundColor(getAlphaColor(data.value))
               .rowStart(7)
               .rowEnd(8)
+              .margin(0.5)
             } else if (index === 0) { //纵置,占用两列
               GridItem() {
                 Column() {
@@ -75,6 +76,7 @@ export struct CardHotPlateWidget {
               .width('50%')
               .height('50%')
               .rowEnd(2)
+              .margin(0.5)
             } else { //纵置单列
               GridItem() {
                 Column() {
@@ -92,6 +94,7 @@ export struct CardHotPlateWidget {
               }
               .width('50%')
               .height('25%')
+              .margin(0.5)
               .backgroundColor(getAlphaColor(data.value))
             }
           })
